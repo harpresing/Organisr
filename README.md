@@ -1,11 +1,9 @@
 # Organisr
 Super cool organizer
 
-## Hosting Service
-Heroku seems to be a good place to host our application, `it's free`
-We can setup the heroku tool belt when we all meet up.
-
-<a href="https://radiant-reaches-74736.herokuapp.com/">App on Heroku</a>
+## Heroku
+The app is now deployed on Heroku, and it is set to track the master branch.
+<a href="https://vast-cove-15144.herokuapp.com/">App on Heroku</a>
 
 ## Development Practice
 It would be best that we use a development branch to push all our changes to Github and make a pull request to the master branch. That way we can all get a chance to review the code before we change our master branch.

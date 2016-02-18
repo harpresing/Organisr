@@ -1,4 +1,5 @@
 # Organisr
+<<<<<<< HEAD
 Sever Side Application
 ## Ubuntu VM
 To connect to the VM you'll need the zooom.pem file, which is available on the #server channel on slack.
@@ -126,3 +127,24 @@ The structure of the project:
 - Testing <a href="http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.VqvXA7CLSHo">Express</a>
 - <a href="http://www.cyberciti.biz/tips/nohup-execute-commands-after-you-exit-from-a-shell-prompt.html">Ubuntu VM stuff</a>
 - <a href="http://www.restapitutorial.com/lessons/httpmethods.html">Restful Methods</a>
+=======
+Super cool organizer
+
+## Heroku
+The app is now deployed on Heroku, and it is set to track the master branch.
+<a href="https://vast-cove-15144.herokuapp.com/">App on Heroku</a>
+
+## Development Practice
+It would be best that we use a development branch to push all our changes to Github and make a pull request to the master branch. That way we can all get a chance to review the code before we change our master branch.
+
+
+## Technologies
+- MongoDB
+- Angular 1.x or 2.x?
+- NodeJs
+- ExpressJs
+- Angular Material?
+- GulpJs
+
+<i>We can discuss these later</i>
+>>>>>>> c88a25c40b69347ea084ca896a97bb36b93efd13

@@ -1,52 +1,17 @@
 {
-  "name": "organisr",
-  "version": "0.1.0",
-  "description": "Implementation of Organisr service ",
-  "main": "server.js",
-  "engines": {
-    "node": "5.5.0"
+  "name": "Organisr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "browser-sync": "^2.11.1",
-    "chai": "^3.5.0",
-    "chai-http": "2.0.0",
-    "cookie-parser": "^1.4.1",
-    "crypto": "0.0.3",
-    "del": "^2.2.0",
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "express-session": "^1.13.0",
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-sass": "^2.1.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "mocha": "^2.4.5",
-    "mongoose": "*",
-    "morgan": "^1.6.1",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
-    "require-dir": "^0.3.0",
-    "serve-favicon": "^2.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^5.0.0-beta6"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node server.js",
-    "postinstall": "node node_modules/gulp/bin/gulp.js prod"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/omnigrass/Organisr.git"
-  },
-  "author": "organisr dev team",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/omnigrass/Organisr/issues"
-  },
-  "homepage": "https://github.com/omnigrass/Organisr#readme"
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "hbs": "~3.1.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  }
 }

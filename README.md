@@ -1,9 +1,5 @@
 # Organisr
 Sever Side Application
-## Ubuntu VM
-To connect to the VM you'll need the zooom.pem file, which is available on the #server channel on slack.
-
-<i>This section will be updated as we continue to develop the application</i>
 
 ## Run Server Locally
 - Install node
@@ -21,6 +17,14 @@ To connect to the VM you'll need the zooom.pem file, which is available on the #
   - Atom Text Editor
   - ITerm 2 (with zsh)
   - ESLint
+
+## Technologies
+- MongoDB
+- Angular 1.x or 2.x?
+- NodeJs
+- ExpressJs
+- Angular Material?
+- GulpJs
 
 ## Project Structure
 The structure of the project:
@@ -115,7 +119,7 @@ The structure of the project:
 - <a href="https://mochajs.org/">Mocha</a>
 - <a href="http://chaijs.com/">Chai</a>
 - <a href="https://www.npmjs.com/">NpmJS</a>
-- <a href="http://handlebarsjs.com/">HandlebarsJs (.hbs)</a>
+- <a href="http://www.embeddedjs.com/">Embedded JavaScript (.ejs)</a>
 - <a href="http://www.getmdl.io/">MDL</a>
 - <a href="https://www.browsersync.io/">BrowserSync</a>
 

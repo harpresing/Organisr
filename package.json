@@ -7,8 +7,10 @@
     "node": "5.5.0"
   },
   "dependencies": {
+    "babelify": "^7.2.0",
     "body-parser": "^1.14.2",
     "browser-sync": "^2.11.1",
+    "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "chai-http": "2.0.0",
     "cookie-parser": "^1.4.1",
@@ -29,7 +31,10 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "require-dir": "^0.3.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6"

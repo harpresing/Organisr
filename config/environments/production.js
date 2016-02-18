@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  app: "Zooop",
+  app: "Organisr",
   mongodb: {
-    uri: 'mongodb://Zooop:MongoLabGpjedyqn93@ds011298.mongolab.com:11298/heroku_q9gzhmxv'
+    uri: ''
   }
 };

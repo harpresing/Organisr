@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  app: "Zooop",
+  app: "Organisr",
   mongodb: {
     uri: 'mongodb://localhost/test'
   }

@@ -8,7 +8,6 @@ const _ = require('lodash');
 var UserSchema = new Schema({
   email:  {
     type: String,
-    required: true,
     unique: true
   },
   name: {
@@ -16,17 +15,21 @@ var UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
     select: false
   },
   passwordSalt: {
     type: String,
-    required: true,
     select: false
   },
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  facebook: {
+    id : String,
+    token : String,
+    email : String,
+    name : String
   }
 });
 

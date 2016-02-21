@@ -17,4 +17,5 @@ module.exports.init = function(app) {
 
   // load strategies
   require('./strategies/local')();
+  require('./strategies/facebook')();
 };

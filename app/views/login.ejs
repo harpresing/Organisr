@@ -1,12 +1,81 @@
 <!doctype html>
 <head>
+  <%# this is very important%>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue-light_blue.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" charset="utf-8">
   <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-</head> 
-<body>
-  <hgroup>
+</head>
+<body class="mdl-layout">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet centre-items">
+    <h1>Oranisr</h1>
+    <h3 class="mdl-button--primary">training sessions made easy</h3>
+  </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
+      <div class="mdl-card mdl-shadow--2dp card-padding">
+        <div class="centre-items">
+          <h4>Login</h4>
+        </div>
+        <div class="centre-items">
+          <a href="/auth/facebook" class="mdl-button mdl-js-button mdl-button--raised facebook-btn">
+            <span class="fa fa-facebook"></span>
+          </a>
+        </div>
+        <div class="centre-items">
+          <h5>Or</h5>
+        </div>
+        <form action="index.html" method="post">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="email" id="email" name="email">
+            <label class="mdl-textfield__label" for="email">Email</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" id="password" name="password">
+            <label class="mdl-textfield__label" for="password">Password</label>
+          </div>
+          <div class="centre-items">
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored form-btn" value="Login"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
+      <div class="mdl-card mdl-shadow--2dp card-padding">
+        <div class="centre-items">
+          <h4>Signup</h4>
+        </div>
+        <form action="/emailSignUp" method="post">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="email" id="email" name="email">
+            <label class="mdl-textfield__label" for="email">Email</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="first-name" name="first-name">
+            <label class="mdl-textfield__label" for="first-name">First Name</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="last-name" name="last-name">
+            <label class="mdl-textfield__label" for="last-name">Last Name</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" id="password" name="password">
+            <label class="mdl-textfield__label" for="password">Password</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" id="confirmPassword" name="confirmPassword">
+            <label class="mdl-textfield__label" for="confirmPassword">Confirm Password</label>
+          </div>
+          <div class="centre-items">
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored form-btn" value="Sign Up"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%# <hgroup>
     <h1>Oranisr</h1>
     <h3>training sessions made easy</h3>
   </hgroup>
@@ -26,6 +95,6 @@
     <button type="submit" class="button buttonBlue">Sign Up
       <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
-  </form>
+  </form>%>
 </body>
 </html>

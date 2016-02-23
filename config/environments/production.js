@@ -3,7 +3,7 @@
 module.exports = {
   app: "Organisr",
   mongodb: {
-    uri: ''
+    uri: 'mongodb://heroku_mn7dt712:s00p7jb3fg28ti9fgu5m3s6nfb@ds013898.mongolab.com:13898/heroku_mn7dt712'
   },
   auth: {
     facebookAuth: {

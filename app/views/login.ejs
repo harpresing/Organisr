@@ -10,20 +10,20 @@
     <h1>Oranisr</h1>
     <h3>training sessions made easy</h3>
   </hgroup>
-  <form action="/login" method="post">
+  <form action="/emailSignUp" method="post">
     <div class="group">
-      <input type="email" name="email"><span class="highlight"></span><span class="bar"></span>
-      <label>Username</label>
+      <input type="email" id="username" name="username"><span class="highlight"></span><span class="bar"></span>
+      <label for="username">Username</label>
     </div>
     <div class="group">
-      <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
-      <label>Password</label>
+      <input type="password" id="password" name="password"><span class="highlight"></span><span class="bar"></span>
+      <label for="password">Password</label>
     </div>
     <div class="group">
-      <input type="password" name="confirmPassword"><span class="highlight"></span><span class="bar"></span>
-      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword"><span class="highlight"></span><span class="bar"></span>
+      <label for="confirmPassword">Confirm Password</label>
     </div>
-    <button type="button" class="button buttonBlue">Sign Up
+    <button type="submit" class="button buttonBlue">Sign Up
       <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
   </form>

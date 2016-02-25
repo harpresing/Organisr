@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
 });
 
 app.listen(app.get('port')||5001,()=>{
-  console.log(`Zooop is now running on port ${app.get('port')||5001}`);
+  console.log(`Organisr is now running on port ${app.get('port')||5001}`);
 });
 
 module.exports = app;

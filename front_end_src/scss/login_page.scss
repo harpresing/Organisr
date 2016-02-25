@@ -1,0 +1,23 @@
+$background_colour: #EFEFEF;
+$facebook-colour: #1976D2;
+body{
+	background: $background_colour;
+}
+
+.centre-items{
+	text-align: center;
+}
+
+.form-btn{
+	width: 100%
+}
+
+.card-padding{
+	padding: 10px;
+}
+
+.facebook-btn{
+	background-color: $facebook-colour !important;
+	color: #fff !important;
+	width: 90%;
+}

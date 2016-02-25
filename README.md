@@ -3,14 +3,10 @@ Sever Side Application
 
 ## Run Server Locally
 - Install node
-- Run `npm install --global gulp-cli`
-- Run `npm i` to download project dependancies
-- Run `gulp` or either the shell/bash scripts.
-
-## Deploying Server
-- `cd` into working directory
-- Run `npm startProd` will open on port 80
-- Run `gulp` in the root of the project, this will open your default browser on port 3000
+- Install Mongo
+- Run `npm i -g nodemon`
+- Run `mongod` in a separate terminal window
+- In root of project run `nodemon`
 
 ## Development Environment
 - Stephen

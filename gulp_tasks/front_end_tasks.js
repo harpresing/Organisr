@@ -6,20 +6,21 @@ const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const del = require("del");
 
-//This will cause the browser to reload automatically
 gulp.task("browser-sync",()=>{
   browserSync.init({
     proxy: 'localhost:5001'
   });
   gulp.watch("app/views/*").on('change', browserSync.reload);
-  gulp.watch("front_end_src/*").on('change', browserSync.reload);
+  gulp.watch("front_end_src/**/*").on('change', browserSync.reload);
 });
+
 
 gulp.task("clean:public/images",()=>{
   return del(["public/images"]);
 });
 //Compiles SCSS to CSS
 // TODO: Get the source maps to work
+
 gulp.task("styles",()=>{
   return gulp.src("./front_end_src/scss/**/*.scss")
   .pipe(sass({outputStyle: 'compressed'}))
@@ -37,5 +38,10 @@ gulp.task("images",()=>{
       }))
       .pipe(gulp.dest('./public/images'))
       .pipe(browserSync.stream());
+});
+
+gulp.task("ejs",()=>{
+  return gulp.src("./app/views/**/*")
+    .pipe(browserSync.stream());
 });
 // TODO: Add Javascript task here

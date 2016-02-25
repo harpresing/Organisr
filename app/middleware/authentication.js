@@ -15,11 +15,11 @@ function ensureAuthenticated(req, res, next) {
 
   res.format({
     html: function() {
-      res.redirect('/login');
+      res.redirect('/');
     },
     // just in case :)
     text: function() {
-      res.redirect('/login');
+      res.redirect('/');
     },
     json: function() {
       res.status(401).json({ message: 'Unauthorized' });

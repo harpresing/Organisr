@@ -44,7 +44,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node server.js",
-    "postinstall": "npm prune && npm i && node node_modules/gulp/bin/gulp.js prod"
+    "postinstall": "node node_modules/gulp/bin/gulp.js prod"
   },
   "repository": {
     "type": "git",

@@ -12,7 +12,6 @@
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
-    "chai-http": "2.0.0",
     "cookie-parser": "^1.4.1",
     "crypto": "0.0.3",
     "del": "^2.2.0",
@@ -23,6 +22,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.6",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "mocha": "^2.4.5",
@@ -31,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-local": "^1.0.0",
+    "request": "^2.69.0",
     "require-dir": "^0.3.0",
     "serve-favicon": "^2.3.0",
     "vinyl-buffer": "^1.0.0",
@@ -38,13 +39,12 @@
     "watchify": "^3.7.0"
   },
   "devDependencies": {
-    "babel-eslint": "^5.0.0-beta6",
     "node-sass": "^3.4.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node server.js",
-    "postinstall": "node node_modules/gulp/bin/gulp.js prod"
+    "postinstall": "npm prune && npm i && node node_modules/gulp/bin/gulp.js prod"
   },
   "repository": {
     "type": "git",

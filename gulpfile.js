@@ -6,7 +6,10 @@ const requireDir = require("require-dir");
 const _tasks = requireDir('./gulp_tasks');
 /*eslint-enable */
 
-gulp.task('default',["browser-sync","test","styles","images"],()=>{
+gulp.task('default',["start-server","styles","images"],()=>{
+  gulp.start("test");
+  gulp.start("browser-sync");
+  gulp.watch("app/views/**/*",["ejs"]);
   gulp.watch("tests/**/*.js",["test"]);
   gulp.watch("app/**/*.js",["test"]);
   gulp.watch("front_end_src/scss/**/*.scss",["styles"]);

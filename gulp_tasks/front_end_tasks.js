@@ -11,32 +11,32 @@ gulp.task("browser-sync",()=>{
     proxy: 'localhost:5001'
   });
   gulp.watch("app/views/*").on('change', browserSync.reload);
-  gulp.watch("front_end_src/**/*").on('change', browserSync.reload);
+  gulp.watch("public/**/*").on('change', browserSync.reload);
 });
 
 
 gulp.task("clean:public/images",()=>{
-  return del(["public/images"]);
+  return del(["dist/images"]);
 });
 //Compiles SCSS to CSS
 // TODO: Get the source maps to work
 
 gulp.task("styles",()=>{
-  return gulp.src("./front_end_src/scss/**/*.scss")
+  return gulp.src("./public/scss/**/*.scss")
   .pipe(sass({outputStyle: 'compressed'}))
   .pipe(sourcemaps.init())
   .pipe(concat("styles.css"))
-  .pipe(gulp.dest("./public/stylesheets"))
+  .pipe(gulp.dest("./dist/stylesheets"))
   .pipe(browserSync.stream());
 });
 
 //Compresses and optimise images
 gulp.task("images",()=>{
-  return gulp.src('front_end_src/images/*')
+  return gulp.src('public/images/*')
     	.pipe(imagemin({
         		progressive: true
       }))
-      .pipe(gulp.dest('./public/images'))
+      .pipe(gulp.dest('./dist/images'))
       .pipe(browserSync.stream());
 });
 

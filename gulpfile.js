@@ -21,6 +21,6 @@ gulp.task('default',["start-server","styles","images","build-js"],()=>{
 
 gulp.task('prod',["styles","images"],()=>{});
 
-gulp.task('front-end',["styles","images","build-js"],()=>{
+gulp.task('front-end',["styles","images","build-js","html"],()=>{
   gulpTasks();
 });

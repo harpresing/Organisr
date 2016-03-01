@@ -1,14 +1,12 @@
 const angular = require('angular');
-var hello = "Hello";
+
 
 
 require('./controllers/index');
+require('./controllers/ui/navbar_layout');
+require('./directives/index');
 
-
-console.log(`${hello} world!!`);
-console.log("Test!");
-
-const app = angular.module('organisrApp',['ngMaterial','organisrController']);
+const app = angular.module('organisrApp',['ngMaterial','OrganisrController','OrganisrDirective']);
 
 app.config(["$mdThemingProvider",($mdThemingProvider)=>{
   $mdThemingProvider.theme('default').primaryPalette('light-blue',{

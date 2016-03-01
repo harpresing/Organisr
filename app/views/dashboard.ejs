@@ -9,16 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body layout="column" ng-controller="indexCtrl">
-    <md-toolbar md-scroll-shrink ng-if="true">
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Menu">
-        <i class="material-icons">menu</i>
-      </md-button>
-      <h3>
-        <span>{{test}}</span>
-      </h3>
-    </div>
-  </md-toolbar>
+    <ng-nav-menu/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-aria.min.js"></script>

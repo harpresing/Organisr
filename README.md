@@ -7,6 +7,9 @@ Sever Side Application
 - Run `npm i -g nodemon`
 - Run `mongod` in a separate terminal window
 - In root of project run `nodemon`
+- Developing the front end app
+  - run `node sever.js`
+  - In another terminal `gulp front-end`
 
 ## Development Environment
 - Stephen

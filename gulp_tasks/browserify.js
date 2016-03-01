@@ -33,5 +33,5 @@ function watch() {
   return compile(true);
 }
 
-gulp.task('build', function() { return compile(); });
-gulp.task('watch', function() { return watch(); });
+gulp.task('build-js', function() { return compile(); });
+gulp.task('watch-js', function() { return watch(); });

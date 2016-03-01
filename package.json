@@ -11,6 +11,7 @@
     "body-parser": "^1.14.2",
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
     "chai": "^3.5.0",
     "cookie-parser": "^1.4.1",
     "crypto": "0.0.3",
@@ -55,5 +56,11 @@
   "bugs": {
     "url": "https://github.com/omnigrass/Organisr/issues"
   },
-  "homepage": "https://github.com/omnigrass/Organisr#readme"
+  "homepage": "https://github.com/omnigrass/Organisr#readme",
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
+  }
 }

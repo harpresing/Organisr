@@ -25,20 +25,20 @@ Sever Side Application
 ## Project Structure
 The structure of the project:
 ```
-.
 ├── Procfile
 ├── README.md
 ├── app
 │   ├── controllers
 │   │   ├── account.js
 │   │   ├── authentication.js
+│   │   ├── emailCredController.js
 │   │   └── main.js
 │   ├── helpers
 │   │   └── password.js
 │   ├── middleware
 │   │   └── authentication.js
 │   ├── models
-│   │   ├── schema.js
+│   │   ├── emailCredential.js
 │   │   └── user.js
 │   ├── routes
 │   │   ├── authentication.js
@@ -57,21 +57,31 @@ The structure of the project:
 │   ├── passport.js
 │   ├── routes.js
 │   └── strategies
+│       ├── facebook.js
 │       └── local.js
-├── front_end_src
+├── dist
+│   ├── images
+│   │   ├── favicon.ico
+│   │   ├── food.jpeg
+│   │   ├── hero_img.JPG
+│   │   └── user.jpg
+│   └── stylesheets
+│       └── styles.css
+├── gulp_tasks
+│   ├── browserify.js
+│   ├── front_end_tasks.js
+│   ├── server.js
+│   └── tests.js
+├── gulpfile.js
+├── package.json
+├── public
 │   ├── images
 │   │   ├── favicon.ico
 │   │   ├── food.jpeg
 │   │   ├── hero_img.JPG
 │   │   └── user.jpg
 │   └── scss
-│       ├── dashboard_page.scss
 │       └── login_page.scss
-├── gulp_tasks
-│   ├── front_end_tasks.js
-│   └── tests.js
-├── gulpfile.js
-├── package.json
 ├── server.js
 ├── tests
 │   └── server
@@ -86,11 +96,13 @@ The structure of the project:
 - Any tasks that you want to be run by default can be called here
 - Any new tasks should be put into their own file and placed in the `gulp_tasks` folder.
 
-#### Front End Src
+#### Public
 - Contains all the static resources that are available to the client.  
 
-#### Public
+#### Dist
 - All the processed resources are to be deposited here.
+
+
 #### Routes
 - All routes that are to be made available should be placed here
 

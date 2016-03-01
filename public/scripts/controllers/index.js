@@ -1,8 +1,8 @@
 const angular = require("angular");
-const zoopController = angular.module('zoopController',[]);
+const organisrController = angular.module('organisrController',[]);
 
-zoopController.controller('indexCtrl',['$scope',($scope)=>{
+organisrController.controller('indexCtrl',['$scope',($scope)=>{
   $scope.test = "Hello World";
 }]);
 
-module.exports = zoopController;
+module.exports = organisrController;

@@ -8,7 +8,7 @@ require('./controllers/index');
 console.log(`${hello} world!!`);
 console.log("Test!");
 
-const app = angular.module('organisrApp',['ngMaterial','zoopController']);
+const app = angular.module('organisrApp',['ngMaterial','organisrController']);
 
 app.config(["$mdThemingProvider",($mdThemingProvider)=>{
   $mdThemingProvider.theme('default').primaryPalette('light-blue',{

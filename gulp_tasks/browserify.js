@@ -7,7 +7,7 @@ const watchify = require('watchify');
 const babel = require('babelify');
 
 function compile(watch) {
-  var bundler = watchify(browserify('./front_end_src/scripts/app.js', { debug: true }).transform(babel));
+  var bundler = watchify(browserify('./public/scripts/app.js', { debug: true }).transform(babel));
 
   function rebundle() {
     bundler.bundle()
@@ -16,7 +16,7 @@ function compile(watch) {
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./public/scripts'));
+      .pipe(gulp.dest('./dist/scripts'));
   }
 
   if (watch) {

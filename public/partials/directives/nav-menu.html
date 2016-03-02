@@ -1,0 +1,19 @@
+<div ng-controller="navBarLayoutCtrl">
+  <md-toolbar md-scroll-shrink ng-if="true">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleSideNav()" class="md-icon-button" aria-label="Menu">
+      <i class="material-icons">menu</i>
+    </md-button>
+    <h3>
+      <span>Organisr Dashboard</span>
+    </h3>
+  </div>
+  </md-toolbar>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="side-menu-left">
+      <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Sidenav Left</h1>
+        </md-toolbar>
+    </md-sidenav>
+  </section>
+</div>

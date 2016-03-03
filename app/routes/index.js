@@ -21,7 +21,7 @@ router.post('/signup',accountCtrl.signup);
 router.get('/logout', authCtrl.signout);
 
 router.get("/dashboard",auth.ensured,(req,res)=>{
-  res.render('dashboard',{user:req.user});
+  res.render('dashboard',{currentUser:req.user});
 });
 
 router.post('/emailSignUp', emailCredCtrl.createEmailUser());

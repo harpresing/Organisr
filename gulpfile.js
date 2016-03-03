@@ -6,14 +6,23 @@ const requireDir = require("require-dir");
 const _tasks = requireDir('./gulp_tasks');
 /*eslint-enable */
 
-gulp.task('default',["start-server","styles","images"],()=>{
+function gulpTasks() {
+  gulp.start("vendor_scripts");
   gulp.start("test");
   gulp.start("browser-sync");
-  gulp.watch("app/views/**/*",["ejs"]);
   gulp.watch("tests/**/*.js",["test"]);
-  gulp.watch("app/**/*.js",["test"]);
-  gulp.watch("front_end_src/scss/**/*.scss",["styles"]);
-  gulp.watch("front_end_src/images/*",["clean:public/images","images"]);
+  gulp.watch("app/**/*",["test"]);
+  gulp.watch("public/scss/**/*.scss",["styles"]);
+  gulp.watch("public/scripts/**/*.js",["watch-js"]);
+  gulp.watch("public/images/*",["clean:public/images","images"]);
+  gulp.watch("public/partials/**/*.html",["html"]);
+}
+gulp.task('default',["start-server","styles","build-js","html"],()=>{
+  gulpTasks();
 });
 
-gulp.task('prod',["styles","images"],()=>{});
+gulp.task('prod',["styles","images","prod-build-js","vendor_scripts","html"],()=>{});
+
+gulp.task('front-end',["styles","build-js","html"],()=>{
+  gulpTasks();
+});

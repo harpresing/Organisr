@@ -1,44 +1,142 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><%=title%></title>
-    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.0/material.blue-light_blue.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="./stylesheets/styles.css" media="screen" title="base styles" charset="utf-8">
-  </head>
-  <body>
-    <div class="mdl-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title"><%=title%></span>
-          <div class="mdl-layout-spacer"></div>
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="">About Us</a>
-          </nav>
-        </div>
-      </header>
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-          <h1>Welcome to <%=title%></h1>
-        </div>
+<html lang="en">
 
-        <p>
-          <%=currentUser%>
-        </p>
-        <div class="mdl-cell mdl-cell--6-col">
-        <a href="/auth/facebook" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          <span class="fa fa-facebook"></span>&nbsp;Sign up
-        </a>
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <a href="./login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          <span class="fa fa-sign-in"></span>&nbsp;Sign up
-        </a>
-      </div>
+  <% include ./bootstrap_partials/head %>
+<body>
+
+
+  <% include ./bootstrap_partials/header %>
+
+
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Organisr</h1>
+                        <h3>Training sessions made easy</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="./login" class="btn btn-default btn-lg"><span class="network-name">Login</span></a>
+                            </li>
+                            <li>
+                                <a href="./login" class="btn btn-default btn-lg"><!--<i class="fa fa-github fa-fw"></i>--> <span class="network-name">Register</span></a>
+                            </li>
+                            <li>
+                                <a href="/auth/facebook" class="btn btn-default btn-lg"><!--<i class="fa fa-linkedin fa-fw"></i>--> <span class="network-name">Connect with Facebook</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-  </body>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+	<a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Don't miss your club activities</h2>
+                    <p class="lead">Watch what is happening in your clubs and keep yourself involved</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="images/Service1.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Track your goals</h2>
+                    <p class="lead">Record your achievements <br> Keep yourself motivated and boosted</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="images/Service2.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Organise your training sessions</h2>
+                    <p class="lead">Keep track of the schedules and participants</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="images/Sports_image.jpeg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row " style="text-align:right">
+                <div class="col-lg-6 " style="margin-left:500px;">
+                    <h2>Connect to Organisr</h2>
+
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="./login" class="btn btn-default btn-lg" style="margin-left: 100px" > <span class="network-name" >Login</a>
+                        </li>
+                        <li>
+                            <a href="./login" class="btn btn-default btn-lg" > <span class="network-name" >Register</span></a>
+                        </li>
+                        <li>
+                            <!--<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Connect with Facebook</span></a>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+    <% include ./bootstrap_partials/footer %>
+</body>
+
 </html>

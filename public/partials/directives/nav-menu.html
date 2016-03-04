@@ -1,4 +1,4 @@
-<div ng-controller="navBarLayoutCtrl">
+<div ng-controller="NavBarLayoutCtrl">
   <md-toolbar md-scroll-shrink ng-if="true">
   <div class="md-toolbar-tools">
     <md-button ng-click="toggleSideNav()" class="md-icon-button" aria-label="Menu">
@@ -37,3 +37,5 @@
     </md-sidenav>
   </section>
 </div>
+<!-- Where Partials are inserted -->
+<div layout="row" layout-align="center" flex ng-view></div>

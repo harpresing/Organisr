@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="./stylesheets/dashboard-styles.css">
   </head>
-  <body layout="column" ng-controller="indexCtrl">
-    <ng-nav-menu/>
+  <body layout="column">
+    <%# <ng-nav-menu/>%>
+    <!-- Where Partials are inserted -->
+    <div ng-view class=""></div>
+    <ng-view></ng-view>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>

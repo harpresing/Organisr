@@ -3,7 +3,6 @@ module.exports = {
   name: 'ngNavMenu',
   directive: ()=>{
     return{
-      restrict: 'E',
       templateUrl:'partials/directives/nav-menu.html'
     };
   }

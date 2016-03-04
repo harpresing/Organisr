@@ -42,7 +42,7 @@ var UserSchema = new Schema({
  * @param {Function} callback
  */
 UserSchema.statics.authenticate = function(email, password, callback) {
-  this.findOne({local:{ email: email }}).select('+password +passwordSalt').exec(function(err, user) {
+  this.findOne({'local.email': email }).select('+local.password +local.passwordSalt').exec(function(err, user) {
     if (err) {
       return callback(err, null);
     }

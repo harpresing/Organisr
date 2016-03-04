@@ -8,8 +8,7 @@ const _ = require('lodash');
 var UserSchema = new Schema({
   local : {
     email:  {
-      type: String,
-      unique: true
+      type: String
     },
     name: {
       type: String
@@ -83,28 +82,35 @@ UserSchema.statics.register = function(opts, callback) {
   var self = this;
   var data = _.cloneDeep(opts);
 
-  //hash the password
-  passwordHelper.hash(opts.password, function(err, hashedPassword, salt) {
-    if (err) {
-      return callback(err);
+  self.model('User').findOne({'local.email':data.email},(err,user)=>{
+    console.log(`User ${user}`);
+    if (user) {
+      err ={code:11000};
+      callback(err);
+    }else {
+      //hash the password
+      passwordHelper.hash(opts.password, function(err, hashedPassword, salt) {
+        if (err) {
+          return callback(err);
+        }
+
+        data.password = hashedPassword;
+        data.passwordSalt = salt;
+        data = {local:data};
+        //create the user
+        self.model('User').create(data, function(err, user) {
+          if (err) {
+            return callback(err, null);
+          }
+
+          // remove password and salt from the result
+          user.local.password = undefined;
+          user.local.passwordSalt = undefined;
+          // return user if everything is ok
+          callback(err, user);
+        });
+      });
     }
-
-    data.password = hashedPassword;
-    data.passwordSalt = salt;
-    data = {local:data};
-    console.log(data);
-    //create the user
-    self.model('User').create(data, function(err, user) {
-      if (err) {
-        return callback(err, null);
-      }
-
-      // remove password and salt from the result
-      user.local.password = undefined;
-      user.local.passwordSalt = undefined;
-      // return user if everything is ok
-      callback(err, user);
-    });
   });
 };
 

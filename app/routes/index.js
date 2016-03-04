@@ -24,7 +24,7 @@ router.get("/dashboard",auth.ensured,(req,res)=>{
   res.render('dashboard',{currentUser:req.user});
 });
 
-router.post('/emailSignUp', emailCredCtrl.createEmailUser());
+// router.post('/emailSignUp', emailCredCtrl.createEmailUser());
 
 router.get("/terms-and-conditions",mainCtrl.showPage("terms_of_use"));
 router.get("/support",mainCtrl.showPage("support"));

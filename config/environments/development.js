@@ -3,7 +3,7 @@
 module.exports = {
   app: "Organisr",
   mongodb: {
-    uri: 'mongodb://localhost/test'
+    uri: 'mongodb://localhost/organisr-dev'
   },
   auth: {
     facebookAuth: {

@@ -141,3 +141,6 @@ The structure of the project:
 - Testing <a href="http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.VqvXA7CLSHo">Express</a>
 - <a href="http://www.cyberciti.biz/tips/nohup-execute-commands-after-you-exit-from-a-shell-prompt.html">Ubuntu VM stuff</a>
 - <a href="http://www.restapitutorial.com/lessons/httpmethods.html">Restful Methods</a>
+
+## Quirks with the build
+- If you've got tabs in your browser pointing to localhost:3000, close them when your finished as they keep trying to connect to port 5001

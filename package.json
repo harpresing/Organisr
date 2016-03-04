@@ -59,7 +59,9 @@
   },
   "homepage": "https://github.com/omnigrass/Organisr#readme",
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "angular": "global:angular"

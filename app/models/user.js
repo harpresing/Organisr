@@ -6,20 +6,21 @@ const Schema = mongoose.Schema;
 const _ = require('lodash');
 
 var UserSchema = new Schema({
-  email:  {
-    type: String,
-    unique: true
-  },
-  name: {
-    type: String
-  },
-  password: {
-    type: String,
-    select: false
-  },
-  passwordSalt: {
-    type: String,
-    select: false
+  local : {
+    email:  {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    password: {
+      type: String,
+      select: false
+    },
+    passwordSalt: {
+      type: String,
+      select: false
+    }
   },
   createdAt: {
     type: Date,
@@ -41,7 +42,7 @@ var UserSchema = new Schema({
  * @param {Function} callback
  */
 UserSchema.statics.authenticate = function(email, password, callback) {
-  this.findOne({ email: email }).select('+password +passwordSalt').exec(function(err, user) {
+  this.findOne({'local.email': email }).select('+local.password +local.passwordSalt').exec(function(err, user) {
     if (err) {
       return callback(err, null);
     }
@@ -52,7 +53,7 @@ UserSchema.statics.authenticate = function(email, password, callback) {
     }
 
     // verify the password with the existing hash from the user
-    passwordHelper.verify(password, user.password, user.passwordSalt, function(err, result) {
+    passwordHelper.verify(password, user.local.password, user.local.passwordSalt, function(err, result) {
       if (err) {
         return callback(err, null);
       }
@@ -81,27 +82,35 @@ UserSchema.statics.register = function(opts, callback) {
   var self = this;
   var data = _.cloneDeep(opts);
 
-  //hash the password
-  passwordHelper.hash(opts.password, function(err, hashedPassword, salt) {
-    if (err) {
-      return callback(err);
+  self.model('User').findOne({'local.email':data.email},(err,user)=>{
+    console.log(`User ${user}`);
+    if (user) {
+      err ={code:11000};
+      callback(err);
+    }else {
+      //hash the password
+      passwordHelper.hash(opts.password, function(err, hashedPassword, salt) {
+        if (err) {
+          return callback(err);
+        }
+
+        data.password = hashedPassword;
+        data.passwordSalt = salt;
+        data = {local:data};
+        //create the user
+        self.model('User').create(data, function(err, user) {
+          if (err) {
+            return callback(err, null);
+          }
+
+          // remove password and salt from the result
+          user.local.password = undefined;
+          user.local.passwordSalt = undefined;
+          // return user if everything is ok
+          callback(err, user);
+        });
+      });
     }
-
-    data.password = hashedPassword;
-    data.passwordSalt = salt;
-
-    //create the user
-    self.model('User').create(data, function(err, user) {
-      if (err) {
-        return callback(err, null);
-      }
-
-      // remove password and salt from the result
-      user.password = undefined;
-      user.passwordSalt = undefined;
-      // return user if everything is ok
-      callback(err, user);
-    });
   });
 };
 
@@ -123,7 +132,7 @@ UserSchema.methods.changePassword = function(oldPassword, newPassword, callback)
       return callback(err, user);
     }
 
-    passwordHelper.verify(oldPassword, user.password, user.passwordSalt, function(err, result) {
+    passwordHelper.verify(oldPassword, user.local.password, user.local.passwordSalt, function(err, result) {
       if (err) {
         return callback(err, null);
       }
@@ -137,8 +146,8 @@ UserSchema.methods.changePassword = function(oldPassword, newPassword, callback)
 
       // generate the new password and save the changes
       passwordHelper.hash(newPassword, (err, hashedPassword, salt) =>{
-        self.password = hashedPassword;
-        self.passwordSalt = salt;
+        self.local.password = hashedPassword;
+        self.local.passwordSalt = salt;
 
         self.save(function(err) {
           if (err) {

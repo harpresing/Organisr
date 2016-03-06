@@ -1,10 +1,10 @@
 'use strict';
 
 //author : Jeeva
-//connecting to mongoose DB
 
+//connecting to mongoose DB
 const mongoose = require('mongoose');
-const passwordHelper = require('../helpers/training');
+const passwordHelper = require('../helpers/training'); // yet to create
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 const _ = require('lodash');
@@ -42,11 +42,6 @@ var TrainingSchema = new Schema({
   }
 });
 
-//method to get training name
-TrainingSchema.methods.returnTrainingName = function(){
-  return this.name;
-}
-
 /**
  * Method to create a training event
  *
@@ -71,7 +66,7 @@ TrainingSchema.statics.addTraining = function(opts, callback) {
 /**
 * Method to find trainings for a participant
 *
-* @param {Object} opts - training data
+* @param {object} participantEmail - Email of the participant to be searched
 * @param {Function} callback
 */
 
@@ -87,6 +82,18 @@ TrainingSchema.statics.findTrainings = function(participantEmail, callback) {
         callback(err, training);
       });
     };
+
+//method to get list of all the trainings
+  TrainingSchema.methods.returnTrainingName = function(){
+    self.model('Training').findBulk({},(err,trainings)=>{
+      if (err) {
+            return callback(err, null);
+          }
+          // return trainings if everything is ok
+          callback(err, training);
+        });
+      };
+  }
 
 // Export training model
 module.exports = mongoose.model('Training', TrainingSchema);

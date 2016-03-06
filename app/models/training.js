@@ -66,7 +66,27 @@ TrainingSchema.statics.addTraining = function(opts, callback) {
         // return training if everything is ok
         callback(err, training);
       });
+    };
 
+/**
+* Method to find trainings for a participant
+*
+* @param {Object} opts - training data
+* @param {Function} callback
+*/
+
+TrainingSchema.statics.findTrainings = function(participantEmail, callback) {
+  var self = this;
+
+//serach for the training
+  self.model('Training').findBulk({participants:participantEmail},(err,trainings)=>{
+    if (err) {
+          return callback(err, null);
+        }
+        // return trainings if everything is ok
+        callback(err, training);
+      });
+    };
 
 // Export training model
 module.exports = mongoose.model('Training', TrainingSchema);

@@ -1,7 +1,5 @@
 'use strict';
 
-//author : Jeeva
-
 //connecting to mongoose DB
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

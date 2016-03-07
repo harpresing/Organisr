@@ -4,9 +4,7 @@
 
 //connecting to mongoose DB
 const mongoose = require('mongoose');
-const passwordHelper = require('../helpers/training'); // yet to create
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 const _ = require('lodash');
 
 //Trainings Schema
@@ -61,7 +59,7 @@ TrainingSchema.statics.addTraining = function(opts, callback) {
         // return training if everything is ok
         callback(err, training);
       });
-    };
+  };
 
 /**
 * Method to find trainings for a participant
@@ -79,21 +77,44 @@ TrainingSchema.statics.findTrainings = function(participantEmail, callback) {
           return callback(err, null);
         }
         // return trainings if everything is ok
-        callback(err, training);
+        callback(err, trainings);
       });
     };
 
 //method to get list of all the trainings
-  TrainingSchema.methods.returnTrainingName = function(){
-    self.model('Training').findBulk({},(err,trainings)=>{
-      if (err) {
-            return callback(err, null);
-          }
-          // return trainings if everything is ok
-          callback(err, training);
-        });
-      };
+TrainingSchema.methods.returnTrainingName = function(callback){
+  self.model('Training').findBulk({},(err,trainings)=>{
+    if (err) {
+      return callback(err, null);
+    }
+    // return trainings if everything is ok
+      callback(err, trainings);
+  });
+};
+
+/*--Start remove content--*/
+mongoose.connect("mongodb://localhost/organisr-dev");
+var Training = mongoose.model('Training', TrainingSchema);
+//Sample data
+const trainingData = {
+  name : "Test",
+  date : new Date(),
+  time : new Date(),
+  venue : "Test",
+  coach : "Test",
+  instructions : "Test"
+};
+
+Training.addTraining(trainingData,(err,training)=>{
+  if(err){
+    console.log(`Something went wrong ${err}`);
   }
+  console.log(`Saved: ${training}`);
+});
+module.exports = Training;
+/*--End remove content--*/
 
 // Export training model
-module.exports = mongoose.model('Training', TrainingSchema);
+
+/*Uncomment the last line*/
+// module.exports = mongoose.model('Training', TrainingSchema);

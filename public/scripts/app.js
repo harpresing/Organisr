@@ -1,24 +1,16 @@
 const angular = require('angular');
 
 
-
 require('./controllers/index');
 require('./controllers/ui/navbar_layout');
 require('./directives/index');
+require('./components/index');
 
-const app = angular.module('organisrApp',['ngRoute','ngMaterial','OrganisrController','OrganisrDirective']);
+const app = angular.module('organisrApp',['ngComponentRouter','ngMaterial','OrganisrController',
+'OrganisrDirective','OrganisrComponents']);
 
-app.config(["$routeProvider","$mdThemingProvider",
-  ($routeProvider,$mdThemingProvider)=>{
-    $routeProvider.when('/home',{
-      templateUrl: './partials/views/home/index.html',
-      controller:'ManageClubCtrl'
-    }).when('/manage-club',{
-      templateUrl:'./partials/views/manage_club/index.html'
-    }).otherwise({
-      redirectTo: '/home'
-    });
-
+app.config(["$mdThemingProvider",
+  ($mdThemingProvider)=>{
     $mdThemingProvider.theme('default').primaryPalette('light-blue',{
       'default':'700'
     })
@@ -26,3 +18,5 @@ app.config(["$routeProvider","$mdThemingProvider",
       'default': '700'
     });
 }]);
+
+app.value('$routerRootComponent', 'app');

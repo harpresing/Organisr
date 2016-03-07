@@ -21,13 +21,13 @@
         </header>
       </md-toolbar>
       <div class="menu-links">
-        <md-button class="btns">
+        <md-button class="btns" ng-link="['Home']">
           <i class="material-icons">home</i>Home
         </md-button>
-        <md-button class="btns">
+        <md-button class="btns" ng-link="['ManageSession']">
           <i class="material-icons">person_add</i>Manage Training Session
         </md-button>
-        <md-button class="btns">
+        <md-button class="btns" ng-link="['MySession']">
           <i class="material-icons">directions_run</i>My Sessions
         </md-button>
         <md-button class="btns">
@@ -38,4 +38,5 @@
   </section>
 </div>
 <!-- Where Partials are inserted -->
-<div layout="row" layout-align="center" flex ng-view></div>
+<!-- <div layout="row" layout-align="center" flex ng-view></div> -->
+<ng-outlet></ng-outlet>

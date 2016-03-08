@@ -21,16 +21,16 @@
         </header>
       </md-toolbar>
       <div class="menu-links">
-        <md-button class="btns" ng-link="['Home']">
+        <md-button class="btns"  ng-click="closeNav()" ng-link="['Home']">
           <i class="material-icons">home</i>Home
         </md-button>
-        <md-button class="btns" ng-link="['ManageSession']">
+        <md-button class="btns"  ng-click="closeNav()" ng-link="['ManageSession']">
           <i class="material-icons">person_add</i>Manage Training Session
         </md-button>
-        <md-button class="btns" ng-link="['MySession']">
+        <md-button class="btns"  ng-click="closeNav()" ng-link="['MySession']">
           <i class="material-icons">directions_run</i>My Sessions
         </md-button>
-        <md-button class="btns">
+        <md-button class="btns" ng-click="closeNav()" >
           <i class="material-icons">settings</i>Settings
         </md-button>
       </div>

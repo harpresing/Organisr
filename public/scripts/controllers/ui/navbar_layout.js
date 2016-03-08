@@ -4,5 +4,9 @@ module.exports = {
     $scope.toggleSideNav = ()=>{
       $mdSidenav('side-menu-left').toggle();
     };
+
+    $scope.closeNav = ()=>{
+      $mdSidenav('side-menu-left').close();
+    };
   }]
 };

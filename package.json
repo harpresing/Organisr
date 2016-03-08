@@ -64,6 +64,7 @@
     ]
   },
   "browserify-shim": {
-    "angular": "global:angular"
+    "angular": "global:angular",
+    "FB": "global:FB"
   }
 }

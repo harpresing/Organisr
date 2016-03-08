@@ -1,3 +1,13 @@
+const FB = require("FB");
+
+FB.init({
+  appId: '1518392685131105',
+  status: true,
+  cookie: true,
+  xfbml: true,
+  version: 'v2.4'
+});
+
 const angular = require('angular');
 
 

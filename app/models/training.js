@@ -29,8 +29,8 @@ var TrainingSchema = new Schema({
   instructions : {
     type : String
   },
-  participants : {
-    type : [String]
+  groupId : {
+    type  : String
   },
   createdAt: {
     type: Date,
@@ -66,11 +66,11 @@ TrainingSchema.statics.addTraining = function(opts, callback) {
 * @param {Function} callback
 */
 
-TrainingSchema.statics.findTrainings = function(participantEmail, callback) {
+TrainingSchema.statics.findTrainings = function(groupId, callback) {
   var self = this;
 
 //serach for the training
-  self.model('Training').find({participants:participantEmail},(err,trainings)=>{
+  self.model('Training').find({groupId:groupId},(err,trainings)=>{
     if (err) {
           return callback(err, null);
         }

@@ -29,8 +29,8 @@ var TrainingSchema = new Schema({
   instructions : {
     type : String
   },
-  participants : {
-    type : [String]
+  groupId : {
+    type  : String
   },
   createdAt: {
     type: Date,
@@ -66,11 +66,11 @@ TrainingSchema.statics.addTraining = function(opts, callback) {
 * @param {Function} callback
 */
 
-TrainingSchema.statics.findTrainings = function(participantEmail, callback) {
+TrainingSchema.statics.findTrainings = function(groupId, callback) {
   var self = this;
 
 //serach for the training
-  self.model('Training').find({participants:participantEmail},(err,trainings)=>{
+  self.model('Training').find({groupId:groupId},(err,trainings)=>{
     if (err) {
           return callback(err, null);
         }
@@ -101,10 +101,10 @@ const trainingData = {
   venue : "Trinity",
   coach : "Stephen",
   instructions : "Loooooooooooooooooooooooooooooooooooooooongggggggggggggggggggggg Instructions",
-  participants : ["harpreet@test.com","jane@test.com","huoda@test.com"]
+  groupId : ["123456","111111","999999"]
 };
 
-const participantEmail = "harpreet@test.com";
+const groupId = "123456";
 
 Training.addTraining(trainingData,(err,training)=>{
   if(err){
@@ -113,7 +113,7 @@ Training.addTraining(trainingData,(err,training)=>{
   console.log(`Saved: ${training}`);
 });
 
-Training.findTrainings(participantEmail,(err,trainings)=>{
+Training.findTrainings(groupId,(err,trainings)=>{
   if(err){
     console.log(`Something went wrong ${err}`);
   }

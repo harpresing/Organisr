@@ -21,7 +21,6 @@ router.get('/logout', authCtrl.signout);
 
 router.get("/dashboard",auth.ensured,mainCtrl.showPage("dashboard"));
 
-
 router.get("/terms-and-conditions",mainCtrl.showPage("terms_of_use"));
 router.get("/support",mainCtrl.showPage("support"));
 module.exports = router;

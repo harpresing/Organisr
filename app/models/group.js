@@ -24,7 +24,7 @@ var GroupSchema = new Schema({
 GroupSchema.statics.add = function (opts,callback){
   var self = this;
   var data = _.cloneDeep(opts);
-  console.log(data);
+  Object.assign(data,{_id:data.id});
   self.model("Group").create(data,(err,group)=>{
     if(err){
       return callback(err,null);

@@ -1,23 +1,15 @@
-// const FB = require("FB");
-//
-// FB.init({
-//   appId: '1518392685131105',
-//   status: true,
-//   cookie: true,
-//   xfbml: true,
-//   version: 'v2.4'
-// });
+'use strict';
 
 const angular = require('angular');
 
-
+require('./dependancies/sc-date-time');
 require('./controllers/index');
 require('./controllers/ui/navbar_layout');
 require('./directives/index');
 require('./components/index');
 
-const app = angular.module('organisrApp',['ngComponentRouter','ngMaterial','OrganisrController',
-'OrganisrDirective','OrganisrComponents']);
+const app = angular.module('organisrApp',['scDateTime','ngComponentRouter','ngMaterial',
+'OrganisrController','OrganisrDirective','OrganisrComponents']);
 
 app.config(["$mdThemingProvider",
   ($mdThemingProvider)=>{
@@ -30,3 +22,15 @@ app.config(["$mdThemingProvider",
 }]);
 
 app.value('$routerRootComponent', 'app');
+
+app.value('scDateTimeConfig', {
+		    defaultTheme: 'material',
+		    autosave: true,
+		    defaultMode: 'date'/'time',
+		    defaultDate: undefined,
+		    displayMode: undefined,
+		    defaultOrientation: false,
+		    displayTwentyfour: true,
+        "on-save": "saveDate($value)",
+		    compact: true
+		});

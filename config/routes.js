@@ -7,5 +7,5 @@ const facebookRoutes = require('./../app/routes/facebook');
 module.exports.init = (app)=>{
   app.use('/', indexRoutes);
   app.use('/',authRoutes);
-  app.use('/dashboard',facebookRoutes);
+  app.use('/fb',facebookRoutes);
 };

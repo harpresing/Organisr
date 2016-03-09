@@ -2,23 +2,34 @@
 
 const FB = require("fb");
 const Group = require("./../models/group");
+const Admin = require("./../models/admin");
 FB.options({version: 'v2.5'});
 
-function getGroup(){
+function setGroup(){
   return (req,res)=>{
     FB.setAccessToken(req.user.facebook.token);
+
     FB.api("me/groups",{},(fbRes)=>{
-      console.log(fbRes);
+
       fbRes.data.map((newGroup)=>{
-        Group.add(newGroup,(err)=>{
+        //Loop through groups that the user is an admin of
+
+        Group.register(newGroup,(err,group)=>{
           if (err) {
             res.send(err);
           }
+          console.log("Admin");
+          console.log(group);
+          console.log(req.user);
+          Admin.assignNewAdmin({
+            userID: req.user.facebook.id,
+            groupID: group._id
+          });
         });
-        res.send("Success");
+        res.send("Thanks!!");
       });
     });
   };
 }
 
-module.exports.getFbGroup = getGroup;
+module.exports.setFBGroup = setGroup;

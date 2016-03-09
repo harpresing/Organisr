@@ -21,15 +21,25 @@ var GroupSchema = new Schema({
   }
 });
 
-GroupSchema.statics.add = function (opts,callback){
+GroupSchema.statics.register = function (opts,callback){
   var self = this;
   var data = _.cloneDeep(opts);
   Object.assign(data,{_id:data.id});
-  self.model("Group").create(data,(err,group)=>{
-    if(err){
-      return callback(err,null);
+
+  self.findOne({_id:data._id},(findErr,group)=>{
+    if (findErr) {
+      callback(findErr);
+    } else if(group){
+      console.log("Found");
+      callback(findErr,group);
+    }else{
+      self.model("Group").create(data,(createErr,newGroup)=>{
+        if(createErr){
+          return callback(createErr,null);
+        }
+        callback(createErr,newGroup);
+      });
     }
-    callback(err,group);
   });
 };
 

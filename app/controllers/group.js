@@ -18,9 +18,6 @@ function setGroup(){
           if (err) {
             res.send(err);
           }
-          console.log("Admin");
-          console.log(group);
-          console.log(req.user);
           Admin.assignNewAdmin({
             userID: req.user.facebook.id,
             groupID: group._id
@@ -32,4 +29,18 @@ function setGroup(){
   };
 }
 
+
+function getGroups() {
+  return (req,res)=>{
+    Admin.find({adminID:req.user.facebook.id},(err,admins)=>{
+      Group.find({_id:{ $in: admins.map((admin)=>{
+            return admin.groupID;
+      })}},(err,groups)=>{
+        res.json(groups);
+
+      });
+    });
+  };
+}
 module.exports.setFBGroup = setGroup;
+module.exports.getFBGroups = getGroups;

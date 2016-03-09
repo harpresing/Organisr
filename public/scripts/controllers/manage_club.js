@@ -1,11 +1,11 @@
 module.exports = {
   name: 'ManageClubCtrl',
   controller: ['$http','$scope','$mdToast',($http,$scope,$mdToast)=>{
-    $scope.hello = "Hello Harpreet!!";
     $scope.getClubs = ()=>{$http({
         method: 'GET',
         url: 'fb/set-user-admin-groups'
       }).then((response)=>{
+        // onSuccess
         $mdToast.show(
             $mdToast.simple()
             .textContent(response.data)
@@ -13,6 +13,7 @@ module.exports = {
         );
         console.log(response);
       },()=>{
+        // onFailure
         $mdToast.show(
             $mdToast.simple()
             .textContent('Oops Something went wrong!')

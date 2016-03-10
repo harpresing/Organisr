@@ -33,7 +33,7 @@ module.exports = ()=>{
            var newUser = new User();
           //  set all of the facebook information in our user model
            newUser.facebook.id = profile.id;
-           newUser.facebook.token = profile.token;
+           newUser.facebook.token = token;
            newUser.facebook.name = profile.displayName;
            newUser.facebook.email = profile.emails[0].value;
 

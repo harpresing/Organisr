@@ -83,7 +83,6 @@ UserSchema.statics.register = function(opts, callback) {
   var data = _.cloneDeep(opts);
 
   self.model('User').findOne({'local.email':data.email},(err,user)=>{
-    console.log(`User ${user}`);
     if (user) {
       err ={code:11000};
       callback(err);

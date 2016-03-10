@@ -49,3 +49,14 @@ $divider-colour: #B6B6B6;
 .nav-toolbar{
   background: darken($primary-colour, 15%)!important;
 }
+
+body{
+  background: #eaeaea;
+}
+
+.card{
+  padding:20px;
+  background: #ffffff;
+  margin-top: 10px;
+  width: 100%;
+}

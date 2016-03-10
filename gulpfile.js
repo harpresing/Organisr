@@ -20,7 +20,11 @@ gulp.task('default',["start-nodemon-server","styles","build-js","html"],()=>{
   gulpTasks();
 });
 
-gulp.task('prod',["styles","images","prod-build-js","vendor_scripts","html"],()=>{});
+gulp.task('prod',["styles","images","prod-build-js","vendor_scripts","html"],()=>{
+  process.nextTick(function() {
+    process.exit(0);
+  });
+});
 
 gulp.task('front-end',["start-node-server","styles","build-js","html"],()=>{
   gulpTasks();

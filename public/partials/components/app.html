@@ -1,4 +1,4 @@
-<div ng-controller="navBarLayoutCtrl">
+<div ng-controller="NavBarLayoutCtrl">
   <md-toolbar md-scroll-shrink ng-if="true">
   <div class="md-toolbar-tools">
     <md-button ng-click="toggleSideNav()" class="md-icon-button" aria-label="Menu">
@@ -20,20 +20,14 @@
           </div>
         </header>
       </md-toolbar>
-      <div class="menu-links">
-        <md-button class="btns">
-          <i class="material-icons">home</i>Home
-        </md-button>
-        <md-button class="btns">
-          <i class="material-icons">person_add</i>Manage Training Session
-        </md-button>
-        <md-button class="btns">
-          <i class="material-icons">directions_run</i>My Sessions
-        </md-button>
-        <md-button class="btns">
-          <i class="material-icons">settings</i>Settings
+      <div class="menu-links" ng-repeat="menuLink in menuLinks">
+        <md-button class="btns"  ng-click="closeNav()" ng-link="['{{menuLink.componment}}']">
+          <i class="material-icons">{{menuLink.icon}}</i>{{menuLink.pageName}}
         </md-button>
       </div>
     </md-sidenav>
   </section>
 </div>
+<!-- Where Partials are inserted -->
+<!-- <div layout="row" layout-align="center" flex ng-view></div> -->
+<ng-outlet></ng-outlet>

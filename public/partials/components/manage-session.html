@@ -25,16 +25,14 @@
         </div>
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm="">
-            <label>Instructor's First name</label>
-            <input ng-model="train.firstName">
-          </md-input-container>
-
-          <md-input-container class="md-block" flex-gt-sm="">
-            <label>Last Name</label>
-            <input ng-model="train.lastName">
+            <label>Instructor</label>
+            <md-select ng-model="train.instructor" ng-click="getInstructors(train.groupID)">
+              <md-option ng-repeat="group in groups" value="{{group._id}}">
+                {{group.name}}
+              </md-option>
+            </md-select>
           </md-input-container>
         </div>
-
         <md-input-container class="md-block">
           <label>Venue</label>
           <input ng-model="train.venue">

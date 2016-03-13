@@ -1,15 +1,28 @@
 
 module.exports = { name:"ManageSession",
-controller:['$http',"$scope",function($http,$scope){
+controller:['$http',function($http){
 			$http({
 	        method: 'GET',
 	        url: 'fb/get-groups'
 	      }).then((response)=>{
 					console.log(response);
-					$scope.groups = response.data;
+					this.groups = response.data;
 				},(response)=>{
 					console.log(response);
 				});
+
+			this.getInstructors = (groupID)=>{
+				console.log("Invoked");
+				$http({
+					method:"GET",
+					url: 'fb/get-group-admins',
+					params:{"id":groupID}
+				}).then((response)=>{
+					this.admins = response.data;
+					console.log(response);
+				});
+			};
+
 	}
 ]
 };

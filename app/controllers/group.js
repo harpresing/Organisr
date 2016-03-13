@@ -42,5 +42,14 @@ function getGroups() {
     });
   };
 }
+
+function getAdmins() {
+  return (req,res)=>{
+    Admin.find({groupID:req.query.id},(err,admins)=>{
+      res.json(admins);
+    });
+  };
+}
 module.exports.setFBGroup = setGroup;
 module.exports.getFBGroups = getGroups;
+module.exports.getGroupAdmins = getAdmins;

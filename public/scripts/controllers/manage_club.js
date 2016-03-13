@@ -1,7 +1,8 @@
 module.exports = {
   name: 'ManageClubCtrl',
   controller: ['$http','$scope','$mdToast',($http,$scope,$mdToast)=>{
-    $scope.getClubs = ()=>{$http({
+    $scope.getClubs = ()=>{
+      $http({
         method: 'GET',
         url: 'fb/set-user-admin-groups'
       }).then((response)=>{
@@ -24,10 +25,3 @@ module.exports = {
     };
   }]
 };
-
-function successCB(response) {
-  return response;
-}
-function errorCB(response) {
-  return response;
-}

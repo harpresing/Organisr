@@ -6,72 +6,74 @@
    <md-content layout-padding="">
     <div>
       <form name="trainForm">
-        <div layout-gt-xs="row">
-          <md-input-container class="md-block" flex-gt-xs="">
-            <label>Title </label>
-            <input ng-model="train.title">
-          </md-input-container>
+        <div layout="row" flex="33" flex-xs="100">
           <md-input-container class="md-block">
             <label>Group</label>
             <md-select ng-model="train.groupID">
-              <md-option ng-repeat="group in groups" value="{{group._id}}">
+              <md-option ng-repeat="group in manage.groups" value="{{group._id}}" ng-click="manage.getInstructors(group._id)">
                 {{group.name}}
               </md-option>
             </md-select>
+            <div ng-message="true" class="my-message">Select a club</div>
           </md-input-container>
         </div>
-        <div layout-gt-xs="row" layout-align="center">
-          <input type='text' name="dateOfBirth" ng-model='train.eventDate' time-date-picker display-mode="date/time" />
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs="">
+            <label>Title </label>
+            <input ng-disabled="train.groupID == null" ng-model="train.title">
+          </md-input-container>
+        </div>
+        <div layout="col">
+          <md-input-container class="md-block" flex-gt-xs="">
+            <label>Date </label>
+            <input ng-disabled="train.groupID == null" type="text" mdp-date-picker mdp-format="dddd, MMMM Do, YYYY" ng-model="train.date" />
+          </md-input-container>
+          <span flex-gt-xs="10"></span>
+          <md-input-container class="md-block" flex-gt-xs="">
+            <label>Time </label>
+            <input ng-disabled="train.groupID == null" type="text" mdp-time-picker mdp-format="HH:mm" ng-model="train.time" />
+          </md-input-container>
         </div>
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Instructor</label>
-            <md-select ng-model="train.instructor" ng-click="getInstructors(train.groupID)">
-              <md-option ng-repeat="group in groups" value="{{group._id}}">
-                {{group.name}}
+            <md-select ng-model="train.instructor" multiple ng-disabled="train.groupID == null">
+              <md-option ng-repeat="admin in manage.admins" value="{{admin.adminID}}">
+                {{admin.adminID}}
               </md-option>
             </md-select>
           </md-input-container>
         </div>
-        <md-input-container class="md-block">
-          <label>Venue</label>
-          <input ng-model="train.venue">
-        </md-input-container>
-        <md-input-container md-no-float="" class="md-block">
-          <input ng-model="train.venue2" placeholder="Venue contd..">
-        </md-input-container>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm="">
+        <div layout="row">
+          <md-input-container flex class="md-block">
+            <label>Venue</label>
+            <input ng-disabled="train.groupID == null" ng-model="train.venue">
+          </md-input-container>
+          <span flex-gt-xs="10"></span>
+          <md-input-container class="md-block" flex>
             <label>City</label>
-            <input ng-model="train.city">
-          </md-input-container>
-
-          <md-input-container class="md-block" flex-gt-sm="">
-            <label>State</label>
-            <md-select ng-model="train.state">
-              <md-option ng-repeat="state in states" value="{{state}}">
-                {{state}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-
-          <md-input-container class="md-block" flex-gt-sm="">
-            <label>Postal Code</label>
-            <input name="postalCode" ng-model="train.postalCode" placeholder="Dublin 2" srequired="" md-maxlength="10">
-            <div ng-messages="trainForm.postalCode.$error" role="alert" multiple="">
-              <div ng-message="required" class="my-message">You must supply a postal code.</div>
-              <div ng-message="md-maxlength" class="my-message">
-                Don't use the long version silly...we don't need to be that specific...
-              </div>
-            </div>
+            <input ng-disabled="train.groupID == null" ng-model="train.city">
           </md-input-container>
         </div>
-        <md-input-container class="md-block">
-          <label>Instructions</label>
-          <textarea ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-        </md-input-container>
-        <md-button class="md-raised md-primary">Submit</md-button>
+        <div laout="row">
+          <md-input-container flex class="md-block">
+            <label>Instructions</label>
+            <textarea ng-disabled="train.groupID == null" ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+          </md-input-container>
+        </div>
+        <div layout="col">
+          <md-input-container class="md-block">
+            <label>Group Size</label>
+            <input ng-disabled="train.groupID == null" ng-model="train.groupSize" type="number"/>
+          </md-input-container>
+          <span flex-gt-xs="10"></span>
+          <md-input-container flex class="md-block">
+            <label>Number of Groups</label>
+            <input ng-disabled="train.groupID == null" type="number" value="1" ng-model="train.numOfGroups"/>
+          </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary">Create</md-button>
+        {{train}}
     </form>
 </div>
 </md-content>

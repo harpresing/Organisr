@@ -2,19 +2,21 @@
 
 const angular = require('angular');
 
-require('./dependancies/sc-date-time');
+//Dependancies
+require("./dependancies/mdPickers");
+
 require('./controllers/index');
 require('./controllers/ui/navbar_layout');
-require('./directives/index');
 require('./components/index');
 
-const app = angular.module('organisrApp',['scDateTime','ngComponentRouter','ngMaterial',
-'OrganisrController','OrganisrDirective','OrganisrComponents']);
+const app = angular.module('organisrApp',['ngComponentRouter','ngMaterial','mdPickers',
+'OrganisrController','OrganisrComponents']);
 
 app.config(["$mdThemingProvider",
   ($mdThemingProvider)=>{
     $mdThemingProvider.theme('default').primaryPalette('light-blue',{
-      'default':'700'
+      'default':'700',
+      'hue-1':'600'
     })
     .accentPalette('red',{
       'default': '700'

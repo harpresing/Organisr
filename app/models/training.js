@@ -12,22 +12,32 @@ var TrainingSchema = new Schema({
     required : "Please enter a training name"
   },
   date : {
-    type : Date,
+    type : String,
     required : "Please enter a date"
   },
   time : {
-    type : Date,
+    type : String,
     required : "Please enter a time"
   },
   venue : {
     type : String,
     required : "Please enter a venue"
   },
-  coach : {
-    type : String
+  city : {
+    type : String,
+    required : "Please enter a city"
+  },
+  instructor : {
+    type : [String]
   },
   instructions : {
     type : String
+  },
+  groupSize : {
+    type  : Number
+  },
+  groupNumber : {
+    type  : Number
   },
   groupId : {
     type  : String

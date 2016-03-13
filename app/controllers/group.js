@@ -20,7 +20,8 @@ function setGroup(){
           }
           Admin.assignNewAdmin({
             userID: req.user.facebook.id,
-            groupID: group._id
+            groupID: group._id,
+            name: req.user.facebook.name
           });
         });
         res.send("Thanks!!");

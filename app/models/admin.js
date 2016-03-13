@@ -6,7 +6,8 @@ const _ = require("lodash");
 
 var AdminSchema = new Schema({
   adminID: String,
-  groupID: String
+  groupID: String,
+  name: String
 });
 
 AdminSchema.statics.assignNewAdmin = function (opts){
@@ -17,7 +18,7 @@ AdminSchema.statics.assignNewAdmin = function (opts){
     if(admin){
       console.log("Found");
     }else{
-      self.model("Admin").create({adminID:data.userID,groupID:data.groupID});
+      self.model("Admin").create({adminID:data.userID,groupID:data.groupID,name:data.name});
     }
   });
 };

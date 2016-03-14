@@ -1,6 +1,6 @@
 
 module.exports = { name:"ManageSession",
-controller:['$http',function($http){
+controller:['$http','$mdToast',function($http,$mdToast){
 			$http({
 	        method: 'GET',
 	        url: 'fb/get-groups'
@@ -20,6 +20,16 @@ controller:['$http',function($http){
 				}).then((response)=>{
 					this.admins = response.data;
 					console.log(response);
+				});
+			};
+
+			this.createSession = (train)=>{
+				$http.post("fb/create-training-session",train).success((response)=>{
+					$mdToast.show(
+	            $mdToast.simple()
+	            .textContent(response)
+	            .hideDelay(3000)
+	        );
 				});
 			};
 

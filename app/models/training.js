@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 //Trainings Schema
 var TrainingSchema = new Schema({
-  name : {
+  title : {
     type : String,
     required : "Please enter a training name"
   },
@@ -27,7 +27,7 @@ var TrainingSchema = new Schema({
     type : String,
     required : "Please enter a city"
   },
-  instructor : {
+  instructors : {
     type : [String]
   },
   instructions : {

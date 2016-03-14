@@ -20,24 +20,24 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Title </label>
-            <input ng-disabled="train.groupID == null" ng-model="train.title">
+            <input ng-disabled="train.groupID == null" ng-model="train.title" ng-required="true">
           </md-input-container>
         </div>
         <div layout="col">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Date </label>
-            <input ng-disabled="train.groupID == null" type="text" mdp-date-picker mdp-format="dddd, MMMM Do, YYYY" ng-model="train.date" />
+            <input ng-required="true" ng-disabled="train.groupID == null" type="text" mdp-date-picker mdp-format="dddd, MMMM Do, YYYY" ng-model="train.date" />
           </md-input-container>
           <span flex-gt-xs="10"></span>
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Time </label>
-            <input ng-disabled="train.groupID == null" type="text" mdp-time-picker mdp-format="HH:mm" ng-model="train.time" />
+            <input ng-required="true" ng-disabled="train.groupID == null" type="text" mdp-time-picker mdp-format="HH:mm" ng-model="train.time" />
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Instructor</label>
-            <md-select ng-model="train.instructor" multiple ng-disabled="train.groupID == null">
+            <md-select ng-model="train.instructors" multiple ng-disabled="train.groupID == null">
               <md-option ng-repeat="admin in manage.admins" value="{{admin.adminID}}">
                 {{admin.name}}
               </md-option>
@@ -47,7 +47,7 @@
         <div layout="row">
           <md-input-container flex class="md-block">
             <label>Venue</label>
-            <input ng-disabled="train.groupID == null" ng-model="train.venue">
+            <input ng-required="true" ng-disabled="train.groupID == null" ng-model="train.venue">
           </md-input-container>
           <span flex-gt-xs="10"></span>
           <md-input-container class="md-block" flex>
@@ -58,7 +58,7 @@
         <div laout="row">
           <md-input-container flex class="md-block">
             <label>Instructions</label>
-            <textarea ng-disabled="train.groupID == null" ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            <textarea ng-required="true" ng-disabled="train.groupID == null" ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
           </md-input-container>
         </div>
         <div layout="col">
@@ -72,7 +72,8 @@
             <input ng-disabled="train.groupID == null" type="number" value="1" ng-model="train.numOfGroups"/>
           </md-input-container>
         </div>
-        <md-button class="md-raised md-primary">Create</md-button>
+        <md-button ng-disabled="train.groupID == null" class="md-raised md-primary" ng-click="manage.createSession(train)">Create</md-button>
+        <div ng-message="true" class="md-warn">Please fill out the</div>
         {{train}}
     </form>
 </div>

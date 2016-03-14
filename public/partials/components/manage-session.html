@@ -38,8 +38,8 @@
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Instructor</label>
             <md-select ng-model="train.instructors" multiple ng-disabled="train.groupID == null">
-              <md-option ng-repeat="admin in manage.admins" value="{{admin.adminID}}">
-                {{admin.name}}
+              <md-option ng-repeat="member in manage.members" value="{{member.memberID}}">
+                {{member.name}}
               </md-option>
             </md-select>
           </md-input-container>

@@ -15,10 +15,10 @@ controller:['$http','$mdToast',function($http,$mdToast){
 				console.log("Invoked");
 				$http({
 					method:"GET",
-					url: 'fb/get-group-admins',
+					url: 'fb/get-group-members',
 					params:{"id":groupID}
 				}).then((response)=>{
-					this.admins = response.data;
+					this.members = response.data;
 					console.log(response);
 				});
 			};

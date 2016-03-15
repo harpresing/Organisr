@@ -28,7 +28,8 @@ var TrainingSchema = new Schema({
     required : "Please enter a city"
   },
   instructors : {
-    type : [String]
+    type : [String],
+    required: "You need coaches and instructors"
   },
   instructions : {
     type : String

@@ -19,11 +19,6 @@ function setGroup(){
           if (err) {
             res.send(err);
           }
-          Admin.assignNewAdmin({
-            userID: req.user.facebook.id,
-            groupID: group._id,
-            name: req.user.facebook.name
-          });
 
           FB.api(`${group._id}/members`,{},(fbRes2)=>{
             fbRes2.data.map((member)=>{

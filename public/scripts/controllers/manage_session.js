@@ -1,6 +1,6 @@
 
 module.exports = { name:"ManageSession",
-controller:['$http','$mdToast',function($http,$mdToast){
+controller:['$http','$mdDialog', function($http,$mdDialog){
 			$http({
 	        method: 'GET',
 	        url: 'fb/get-groups'
@@ -25,12 +25,23 @@ controller:['$http','$mdToast',function($http,$mdToast){
 
 			this.createSession = (train)=>{
 				$http.post("fb/create-training-session",train).success((response)=>{
-					$mdToast.show(
-	            $mdToast.simple()
-	            .textContent(response)
-	            .hideDelay(3000)
-	        );
+					console.log("Session Created");
 				});
+
+			this.showAlert = function(ev) {
+				console.log("success");
+                $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('You Go, Captain!')
+                .textContent('Session Created! You can view it in My Sessions')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            );
+
+			}
 			};
 
 	}

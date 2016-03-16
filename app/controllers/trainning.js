@@ -13,7 +13,17 @@ class TrainingController {
       });
     };
   }
+  getSessions(){
+      return (req, res)=> {
+        Training.find(function(err, sessions) {
+          if (err)
+            res.send(err);
+          res.json(sessions);
+        });
+      };
+    }
 }
+
 
 
 module.exports = new TrainingController();

@@ -72,7 +72,7 @@
             <input ng-disabled="train.groupID == null" type="number" value="1" ng-model="train.numOfGroups"/>
           </md-input-container>
         </div>
-        <md-button ng-disabled="train.groupID == null" class="md-raised md-primary" ng-click="manage.createSession(train)">Create</md-button>
+        <md-button ng-disabled="train.groupID == null" class="md-raised md-primary" ng-click="manage.createSession(train); manage.showAlert($event)">Create</md-button>
         <div ng-message="true" class="md-warn">Please fill out the</div>
         {{train}}
     </form>

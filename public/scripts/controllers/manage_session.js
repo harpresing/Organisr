@@ -12,7 +12,6 @@ controller:['$http','$mdToast',function($http,$mdToast){
 				});
 
 			this.getInstructors = (groupID)=>{
-				console.log("Invoked");
 				$http({
 					method:"GET",
 					url: 'fb/get-group-members',

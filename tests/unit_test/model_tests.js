@@ -6,6 +6,7 @@ const chai = require("chai");
 const expect = chai.expect;
 const Group = require("./../../app/models/group");
 const Member = require("./../../app/models/member");
+const Training = require("./../../app/models/training");
 const mongoose = require("mongoose");
 const config = require("./../../config/index");
 mongoose.connect(config.mongodb.uri);
@@ -56,6 +57,40 @@ const testMemberData = [
   }
 ];
 
+const testTrainninData = [{
+    "groupID" : "groupId1",
+  	"title" : "Test",
+  	"date" : "Thursday, March 31st, 2016",
+  	"time" : "15:38",
+  	"venue" : "test",
+  	"city" : "test",
+  	"instructors" : [
+  		"1027723220583857"
+  	]
+  },
+  {
+    "groupID" : "groupId3",
+  	"title" : "Test",
+  	"date" : "Thursday, March 31st, 2016",
+  	"time" : "15:38",
+  	"venue" : "test",
+  	"city" : "test",
+  	"instructors" : [
+  		"1027723220583857"
+  	]
+  },
+  {
+    "groupID" : "groupId2",
+  	"title" : "Test",
+  	"date" : "Thursday, March 31st, 2016",
+  	"time" : "15:38",
+  	"venue" : "test",
+  	"city" : "test",
+  	"instructors" : [
+  		"1027723220583857"
+  	]
+  }
+];
 describe('Group model', function () {
   beforeEach((done)=>{
     testGroupData.map((group)=>{
@@ -123,10 +158,54 @@ describe('Member model', function () {
   it('get all the groups to belong to a member', function (done) {
     Member.findGroups("mem1",(err,groups)=>{
       if(err) return done(err);
-      console.log(groups);
       expect(groups.length).to.be.equal(2);
       expect(groups[0].name).to.be.equal("group1");
       expect(groups[1].name).to.be.equal("group2");
+      done();
+    });
+  });
+});
+
+describe('Training model', function () {
+  beforeEach(function (done) {
+    testGroupData.map((group)=>{
+      Group.create(group,()=>{
+      });
+    });
+    testMemberData.map((member)=>{
+      Member.create(member);
+    });
+    testTrainninData.map((training)=>{
+      Training.create(training);
+    });
+    done();
+  });
+
+  afterEach(function (done) {
+    testGroupData.map((group)=>{
+      Group.remove(group,()=>{
+      });
+    });
+    testMemberData.map((member)=>{
+      Member.remove(member,()=>{});
+    });
+    testTrainninData.map((training)=>{
+      Training.remove(training,()=>{});
+    });
+    done();
+  });
+
+  it('find a training session', function (done) {
+    Training.find({},(err,trainings)=>{
+      expect(trainings).to.be.array;
+      expect(trainings[0].groupID).to.be.equal("groupId1");
+      done();
+    });
+  });
+
+  it('get all affiliated Training sessions', function (done) {
+    Training.getAffiliatedSession("mem1",(err,sessions)=>{
+      expect(sessions.length).to.be.equal(2);
       done();
     });
   });

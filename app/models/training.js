@@ -2,6 +2,7 @@
 
 //connecting to mongoose DB
 const mongoose = require('mongoose');
+const Member = require("./member");
 const Schema = mongoose.Schema;
 const _ = require('lodash');
 
@@ -98,6 +99,16 @@ TrainingSchema.methods.returnTrainingName = function(callback){
     }
     // return trainings if everything is ok
       callback(err, trainings);
+  });
+};
+
+TrainingSchema.statics.getAffiliatedSession = function(id,callback){
+  Member.findGroups(id,(memErr,groups)=>{
+    const groupIDs = groups.map((group)=>{return group._id;});
+    this.find({groupID:{$in:groupIDs}},(trainErr, sessions)=>{
+      if(trainErr) callback(trainErr);
+      callback(trainErr,sessions);
+    });
   });
 };
 

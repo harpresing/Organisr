@@ -30,9 +30,9 @@ MemberSchema.statics.findGroups = function (id, callback) {
   getGroupIds(this,id,(err,groupIDs)=>{
     Group.find({_id:{$in:groupIDs}},(err,groups)=>{
       if(err) callback(err);
+      console.log(groups);
       callback(err,groups);
     });
-    callback();
   });
 };
 

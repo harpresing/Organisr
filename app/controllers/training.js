@@ -1,7 +1,6 @@
 'use strict';
 
 const Training  = require("./../models/training");
-const Group = require("./../models/group");
 class TrainingController {
   createSession(){
     return (req,res)=>{
@@ -16,7 +15,8 @@ class TrainingController {
   }
   getSessions(){
       return (req, res)=> {
-        Training.find(function(err, sessions) {
+        console.log(req.user.facebook);
+        Training.getAffiliatedSession(req.user.facebook.id,function(err, sessions) {
           if (err)
             res.send(err);
           res.json(sessions);

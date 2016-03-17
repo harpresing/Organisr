@@ -30,7 +30,6 @@ function setGroup(){
               };
               Member.assignNewMember(data);
             });
-            console.log(fbRes2);
           });
         });
         res.send("Thanks!!");

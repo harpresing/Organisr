@@ -1,10 +1,11 @@
 <div layout="row" layout-align="center" ng-controller="ManageSession as manage">
-  <div flex-xs="100" flex="80" class="md-whiteframe-2dp card">
-      <div layout="column" ng-cloak class="md-inline-form">
-        <h1>Create Session</h1>
-        <form name="createSessions">
-   <md-content layout-padding="">
-    <div>
+<md-card flex-xs="100" flex="80">
+  <md-card-title>
+    <md-card-title-text>
+      <h1 class="md-headline">Create Session</h1>
+    </md-card-title-text>
+  </md-card-title>
+   <md-card-content>
       <form name="trainForm">
         <div layout="row" flex="33" flex-xs="100">
           <md-input-container class="md-block">
@@ -37,7 +38,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Instructor</label>
-            <md-select ng-model="train.instructors" multiple ng-disabled="train.groupID == null">
+            <md-select ng-model="train.instructors" multiple="true" ng-disabled="train.groupID == null">
               <md-option ng-repeat="member in manage.members" value="{{member.memberID}}">
                 {{member.name}}
               </md-option>
@@ -73,9 +74,9 @@
           </md-input-container>
         </div>
         <md-button ng-disabled="train.groupID == null" class="md-raised md-primary" ng-click="manage.createSession(train)">Create</md-button>
-        <div ng-message="true" class="md-warn">Please fill out the</div>
+        <div ng-message="true" class="md-warn">Please fill out the form</div>
         {{train}}
-    </form>
-</div>
-</md-content>
+      </form>
+    </md-card-content>
+  </md-card>
 </div>

@@ -14,11 +14,12 @@ var MemberSchema = new Schema({
 MemberSchema.statics.assignNewMember = function (opts){
   var self = this;
   var data = _.cloneDeep(opts);
-
-  self.findOne({memberID:data.userID,groupID:data.groupID},(findErr,admin)=>{
+  self.findOne({memberID:data.memberID,groupID:data.groupID},(findErr,admin)=>{
     if(admin){
       console.log("Found");
+      console.log(admin);
     }else{
+      console.log("Created");
       self.model("Member").create(data);
     }
   });

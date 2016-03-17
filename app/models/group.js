@@ -53,28 +53,4 @@ GroupSchema.statics.findGroup = function(groupID,callback){
     callback(err,group);
   });
 };
-
 module.exports = mongoose.model('Group', GroupSchema);
-// mongoose.connect("mongodb://localhost/organisr-dev");
-// var Group = mongoose.model('Group', GroupSchema);
-//
-// const groupData ={
-//   _id:"123456789",
-//   name:"DUHAC",
-//   icon:"https://wwww.facebook.jpg",
-//   link:"https://www.google.com"
-// };
-//
-// Group.add(groupData,(err,group)=>{
-//   if(err){
-//     console.log(`Something went wrong ${err}`);
-//   }
-//   console.log(`Saved ${group}`);
-// });
-//
-// Group.findGroup("123456789",(err,group)=>{
-//   if(err){
-//     console.log(`Something went wrong ${err}`);
-//   }
-//   console.log(`Found ${group}`);
-// });

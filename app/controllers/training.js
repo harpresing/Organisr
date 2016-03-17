@@ -1,6 +1,7 @@
 'use strict';
 
 const Training  = require("./../models/training");
+const Group = require("./../models/group");
 class TrainingController {
   createSession(){
     return (req,res)=>{

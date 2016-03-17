@@ -1,7 +1,30 @@
-<div layout="row" layout-align="center">
-  <div flex-xs="100" flex="80" class="md-whiteframe-2dp card">
-      <div class="">
-        <h1>My Sessions</h1>
-      </div>
+<div layout="row" layout-align="center" ng-controller="MySessions as sessions">
+<div flex-xs="100" flex="80" class="md-whiteframe-2dp card">
+<div ng-cloak="" layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+  <div flex-gt-sm="50" flex="">
+    <md-content ng-show='sessionsAvailable'>
+    <div layout layout-align="center">
+    <h1>My Sessions </h1>
+    </div>
+      <md-list >
+        <md-subheader class="md-no-sticky">Your Sessions</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="session in sessions">
+          <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}"> -->
+          <md-divider></md-divider>
+          <div class="md-list-item-text" layout="column">
+            <h4>{{session.title}}</h4>
+            <h4>{{ session.date }} at {{ session.time }}</h3>
+            <h4>Location: {{ session.venue }}, {{ session.city }} </h4>
+            <h4>Group Size: {{ session.groupSize }}</h4>
+            <h4>Posted On {{ session.createdAt }}</h4>
+          </div>
+        </md-list-item>
+       </md-list>
+    </md-content>
+    <md-content ng-hide='sessionsAvailable'>
+      <md-subheader class="md-no-sticky">You haven't created any Sessions yet!! What are you waiting for?</md-subheader>
+    </md-content>
   </div>
+</div>
+</div>
 </div>

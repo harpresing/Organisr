@@ -1,4 +1,4 @@
-
+var angular = require('angular');
 module.exports = { name:"ManageSession",
 controller:['$http','$mdDialog', function($http,$mdDialog){
 			$http({
@@ -24,25 +24,42 @@ controller:['$http','$mdDialog', function($http,$mdDialog){
 
 			this.createSession = (train)=>{
 				$http.post("fb/create-training-session",train).success((response)=>{
-					console.log("Session Created");
+					this.newSession = response;
+					console.log(response);
 				});
 
+			};
 			this.showAlert = function(ev) {
 				console.log("success");
-                $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('You Go, Captain!')
-                .textContent('Session Created! You can view it in My Sessions')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Got it!')
-                .targetEvent(ev)
-            );
-
-			}
+        $mdDialog.show({
+					controller: DialogController,
+					templateUrl: "./partials/components/post-dialog.html",
+					parent: angular.element(document.body),
+					targetEvent:ev,
+					clickOutsideToClose:true
+				}).then((message)=>{
+					console.log("Response");
+					console.log(this.newSession);
+					console.log(message);
+					const data = Object.assign(this.newSession,{message:message});
+					console.log(data);
+					$http.post("fb/post-to-group",data).success(()=>{
+						console.log("Posted");
+					});
+				});
 			};
-
 	}
 ]
 };
+
+function DialogController($scope,$mdDialog) {
+	$scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+	$scope.postToFb = ()=>{
+		$mdDialog.hide($scope.message);
+	};
+}

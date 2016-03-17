@@ -4,7 +4,7 @@ const mainCtrl = require('./../controllers/main');
 const authCtrl = require("./../controllers/authentication");
 const auth = require('./../middleware/authentication');
 const accountCtrl = require('./../controllers/account');
-const trainingCtrl = require("./../controllers/trainning");
+const trainingCtrl = require("./../controllers/training");
 const router = express.Router();
 
 router.get('/',(req,res)=>{

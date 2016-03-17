@@ -4,12 +4,12 @@ const Training  = require("./../models/training");
 class TrainingController {
   createSession(){
     return (req,res)=>{
-      Training.create(req.body,(err)=>{
+      Training.create(req.body,(err,training)=>{
         if(err){
           throw err;
         }
         console.log("Trainning Session Saved");
-        res.send("Session Created!!!");
+        res.send(training);
       });
     };
   }

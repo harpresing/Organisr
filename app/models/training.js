@@ -40,7 +40,7 @@ var TrainingSchema = new Schema({
   groupNumber : {
     type  : Number
   },
-  groupId : {
+  groupID : {
     type  : String
   },
   createdAt: {

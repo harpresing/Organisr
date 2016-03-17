@@ -59,6 +59,21 @@ function getMembers() {
     });
   };
 }
+
+function postToFb() {
+  return (req,res)=>{
+    console.log("Inovked");
+    FB.setAccessToken(req.user.facebook.token);
+    FB.api(`${req.body.groupID}/feed`,'post',{
+      message: req.body.message,
+      link: `http://organisr.xyz/${req.body._id}`
+    },(fbRes)=>{
+      console.log(fbRes);
+      res.send("Posted");
+    });
+  };
+}
 module.exports.setFBGroup = setGroup;
 module.exports.getFBGroups = getGroups;
 module.exports.getGroupMembers = getMembers;
+module.exports.postToFBGroup = postToFb;

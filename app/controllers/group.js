@@ -40,8 +40,6 @@ function setGroup(){
 
 function getGroups() {
   return (req,res)=>{
-    console.log("Get groups");
-    console.log(req.user.facebook.id);
     Member.find({memberID:req.user.facebook.id},(err,members)=>{
       Group.find({_id:{ $in: members.map((member)=>{
             return member.groupID;
@@ -63,7 +61,6 @@ function getMembers() {
 
 function postToFb() {
   return (req,res)=>{
-    console.log("Inovked");
     FB.setAccessToken(req.user.facebook.token);
     FB.api(`${req.body.groupID}/feed`,'post',{
       message: req.body.message,

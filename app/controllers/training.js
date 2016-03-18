@@ -22,7 +22,15 @@ class TrainingController {
           res.json(sessions);
         });
       };
-    }
+  }
+
+  getSessionPage(){
+    return (req,res)=>{
+      Training.find({_id:req.params.id},(err,session)=>{
+        res.render('training',{session:session});
+      });
+    };
+  }
 }
 
 

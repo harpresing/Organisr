@@ -2,7 +2,6 @@
 
 const FB = require("fb");
 const Group = require("./../models/group");
-const Admin = require("./../models/admin");
 const Member = require("./../models/member");
 FB.options({version: 'v2.5'});
 
@@ -11,7 +10,7 @@ function setGroup(){
     FB.setAccessToken(req.user.facebook.token);
 
     FB.api("me/groups",{},(fbRes)=>{
-
+      console.log(fbRes);
       fbRes.data.map((newGroup)=>{
         //Loop through groups that the user is an admin of
 
@@ -41,9 +40,11 @@ function setGroup(){
 
 function getGroups() {
   return (req,res)=>{
-    Admin.find({adminID:req.user.facebook.id},(err,admins)=>{
-      Group.find({_id:{ $in: admins.map((admin)=>{
-            return admin.groupID;
+    console.log("Get groups");
+    console.log(req.user.facebook.id);
+    Member.find({memberID:req.user.facebook.id},(err,members)=>{
+      Group.find({_id:{ $in: members.map((member)=>{
+            return member.groupID;
       })}},(err,groups)=>{
         res.json(groups);
 

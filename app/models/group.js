@@ -45,7 +45,6 @@ GroupSchema.statics.register = function (opts,callback){
 
 GroupSchema.statics.findGroup = function(groupID,callback){
   var self = this;
-
   self.model("Group").find({_id:groupID},(err,group)=>{
     if(err){
       return callback(err,null);

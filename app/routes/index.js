@@ -24,4 +24,8 @@ router.get("/dashboard",auth.ensured,mainCtrl.showPage("dashboard"));
 router.get("/get-training-sessions",auth.ensured,trainingCtrl.getSessions());
 router.get("/terms-and-conditions",mainCtrl.showPage("terms_of_use"));
 router.get("/support",mainCtrl.showPage("support"));
+
+
+router.get('/session/:id',trainingCtrl.getSessionPage());
+
 module.exports = router;

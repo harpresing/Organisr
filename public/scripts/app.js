@@ -2,8 +2,7 @@
 
 const angular = require('angular');
 
- window.location.hash = "";
- 
+
 //Dependancies
 require("./dependancies/mdPickers");
 

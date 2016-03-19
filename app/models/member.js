@@ -39,8 +39,6 @@ MemberSchema.statics.findGroups = function (id, callback) {
 function getGroupIds(self,id, cb) {
   self.find({memberID:id},(findErr,members)=>{
     const groupIDs = members.map((member)=>{return member.groupID;});
-    console.log("Hello");
-    console.log(members);
     cb(findErr,groupIDs);
     });
 }

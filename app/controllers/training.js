@@ -6,7 +6,10 @@ class TrainingController {
     return (req,res)=>{
       Training.create(req.body,(err,training)=>{
         if(err){
-          throw err;
+          res.send({
+            error:true,
+            message: "Your trainning session is forgetting important information."
+          });
         }
         console.log("Trainning Session Saved");
         res.send(training);

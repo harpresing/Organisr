@@ -30,7 +30,6 @@ GroupSchema.statics.register = function (opts,callback){
     if (findErr) {
       callback(findErr);
     } else if(group){
-      console.log("Found");
       callback(findErr,group);
     }else{
       self.model("Group").create(data,(createErr,newGroup)=>{

@@ -210,3 +210,7 @@ describe('Training model', function () {
     });
   });
 });
+
+describe('Participant model', function () {
+
+});

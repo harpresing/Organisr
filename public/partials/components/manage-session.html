@@ -21,24 +21,24 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Title </label>
-            <input ng-disabled="train.groupID == null" ng-model="train.title" ng-required="true">
+            <input ng-disabled="manage.isDisabled" ng-model="train.title" ng-required="true">
           </md-input-container>
         </div>
         <div layout="col">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Date </label>
-            <input ng-required="true" ng-disabled="train.groupID == null" type="text" mdp-date-picker mdp-format="dddd, MMMM Do, YYYY" ng-model="train.date" />
+            <input ng-required="true" ng-disabled="manage.isDisabled" type="text" mdp-date-picker mdp-format="dddd, MMMM Do, YYYY" ng-model="train.date" />
           </md-input-container>
           <span flex-gt-xs="10"></span>
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Time </label>
-            <input ng-required="true" ng-disabled="train.groupID == null" type="text" mdp-time-picker mdp-format="HH:mm" ng-model="train.time" />
+            <input ng-required="true" ng-disabled="manage.isDisabled" type="text" mdp-time-picker mdp-format="HH:mm" ng-model="train.time" />
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Instructor</label>
-            <md-select ng-required ng-model="train.instructors" multiple="true" ng-disabled="train.groupID == null">
+            <md-select ng-required ng-model="train.instructors" multiple="true" ng-disabled="manage.isDisabled">
               <md-option ng-repeat="member in manage.members" value="{{member.memberID}}">
                 {{member.name}}
               </md-option>
@@ -48,32 +48,32 @@
         <div layout="row">
           <md-input-container flex class="md-block">
             <label>Venue</label>
-            <input ng-required="true" ng-disabled="train.groupID == null" ng-model="train.venue">
+            <input ng-required="true" ng-disabled="manage.isDisabled" ng-model="train.venue">
           </md-input-container>
           <span flex-gt-xs="10"></span>
           <md-input-container class="md-block" flex>
             <label>City</label>
-            <input ng-disabled="train.groupID == null" ng-model="train.city">
+            <input ng-disabled="manage.isDisabled" ng-model="train.city">
           </md-input-container>
         </div>
         <div laout="row">
           <md-input-container flex class="md-block">
             <label>Instructions</label>
-            <textarea ng-required="true" ng-disabled="train.groupID == null" ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            <textarea ng-required="true" ng-disabled="manage.isDisabled" ng-model="train.Instructions" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
           </md-input-container>
         </div>
         <div layout="col">
           <md-input-container class="md-block">
             <label>Group Size</label>
-            <input ng-disabled="train.groupID == null" ng-model="train.groupSize" type="number"/>
+            <input ng-disabled="manage.isDisabled" ng-model="train.groupSize" type="number"/>
           </md-input-container>
           <span flex-gt-xs="10"></span>
           <md-input-container flex class="md-block">
             <label>Number of Groups</label>
-            <input ng-disabled="train.groupID == null" type="number" value="1" ng-model="train.numOfGroups"/>
+            <input ng-disabled="manage.isDisabled" type="number" value="1" ng-model="train.numOfGroups"/>
           </md-input-container>
         </div>
-        <md-button ng-disabled="train.groupID == null" class="md-raised md-primary" ng-click="manage.createSession(train); manage.showAlert($event)">Create</md-button>
+        <md-button ng-disabled="manage.isDisabled" class="md-raised md-primary" ng-click="manage.createSession(train,$event);">Create</md-button>
         <div ng-message="true" class="md-warn">Please fill out the form</div>
       </form>
     </md-card-content>

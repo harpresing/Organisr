@@ -2,6 +2,8 @@
 
 const angular = require('angular');
 
+ window.location.hash = "";
+ 
 //Dependancies
 require("./dependancies/mdPickers");
 
@@ -23,4 +25,7 @@ app.config(["$mdThemingProvider",
     });
 }]);
 
+app.config(["$locationProvider",($locationProvider)=>{
+  $locationProvider.html5Mode(true);
+}]);
 app.value('$routerRootComponent', 'app');

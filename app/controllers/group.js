@@ -31,7 +31,7 @@ function setGroup(){
             });
           });
         });
-        res.send("Thanks!!");
+        res.send("Your clubs info has been updated!");
       });
     });
   };

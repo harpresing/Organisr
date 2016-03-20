@@ -2,7 +2,7 @@
 
 const FB = require("fb");
 const Group = require("./../models/group");
-const Admin = require("./../models/admin");
+const Member = require("./../models/member");
 FB.options({version: 'v2.5'});
 
 function setGroup(){
@@ -10,7 +10,7 @@ function setGroup(){
     FB.setAccessToken(req.user.facebook.token);
 
     FB.api("me/groups",{},(fbRes)=>{
-
+      console.log(fbRes);
       fbRes.data.map((newGroup)=>{
         //Loop through groups that the user is an admin of
 
@@ -18,12 +18,20 @@ function setGroup(){
           if (err) {
             res.send(err);
           }
-          Admin.assignNewAdmin({
-            userID: req.user.facebook.id,
-            groupID: group._id
+
+          FB.api(`${group._id}/members`,{},(fbRes2)=>{
+            fbRes2.data.map((member)=>{
+              const data = {
+                memberID: member.id,
+                groupID: group._id,
+                administrator: member.administrator,
+                name: member.name
+              };
+              Member.assignNewMember(data);
+            });
           });
         });
-        res.send("Thanks!!");
+        res.send("Your clubs info has been updated!");
       });
     });
   };
@@ -32,9 +40,9 @@ function setGroup(){
 
 function getGroups() {
   return (req,res)=>{
-    Admin.find({adminID:req.user.facebook.id},(err,admins)=>{
-      Group.find({_id:{ $in: admins.map((admin)=>{
-            return admin.groupID;
+    Member.find({memberID:req.user.facebook.id},(err,members)=>{
+      Group.find({_id:{ $in: members.map((member)=>{
+            return member.groupID;
       })}},(err,groups)=>{
         res.json(groups);
 
@@ -42,5 +50,28 @@ function getGroups() {
     });
   };
 }
+
+function getMembers() {
+  return (req,res)=>{
+    Member.find({groupID:req.query.id},(err,members)=>{
+      res.json(members);
+    });
+  };
+}
+
+function postToFb() {
+  return (req,res)=>{
+    FB.setAccessToken(req.user.facebook.token);
+    FB.api(`${req.body.groupID}/feed`,'post',{
+      message: req.body.message,
+      link: `http://organisr.xyz/${req.body._id}`
+    },(fbRes)=>{
+      console.log(fbRes);
+      res.send("Posted");
+    });
+  };
+}
 module.exports.setFBGroup = setGroup;
 module.exports.getFBGroups = getGroups;
+module.exports.getGroupMembers = getMembers;
+module.exports.postToFBGroup = postToFb;

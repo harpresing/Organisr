@@ -2,34 +2,46 @@
 
 //connecting to mongoose DB
 const mongoose = require('mongoose');
+const Member = require("./member");
 const Schema = mongoose.Schema;
 const _ = require('lodash');
 
 //Trainings Schema
 var TrainingSchema = new Schema({
-  name : {
+  title : {
     type : String,
     required : "Please enter a training name"
   },
   date : {
-    type : Date,
+    type : String,
     required : "Please enter a date"
   },
   time : {
-    type : Date,
+    type : String,
     required : "Please enter a time"
   },
   venue : {
     type : String,
     required : "Please enter a venue"
   },
-  coach : {
-    type : String
+  city : {
+    type : String,
+    required : "Please enter a city"
+  },
+  instructors : {
+    type : [String],
+    required: "You need coaches and instructors"
   },
   instructions : {
     type : String
   },
-  groupId : {
+  groupSize : {
+    type  : Number
+  },
+  groupNumber : {
+    type  : Number
+  },
+  groupID : {
     type  : String
   },
   createdAt: {
@@ -87,6 +99,16 @@ TrainingSchema.methods.returnTrainingName = function(callback){
     }
     // return trainings if everything is ok
       callback(err, trainings);
+  });
+};
+
+TrainingSchema.statics.getAffiliatedSession = function(id,callback){
+  Member.findGroups(id,(memErr,groups)=>{
+    const groupIDs = groups.map((group)=>{return group._id;});
+    this.find({groupID:{$in:groupIDs}},(trainErr, sessions)=>{
+      if(trainErr) callback(trainErr);
+      callback(trainErr,sessions);
+    });
   });
 };
 

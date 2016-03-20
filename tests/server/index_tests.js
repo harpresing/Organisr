@@ -19,6 +19,17 @@ describe('Index Routes',() => {
       url: `${baseUrl}/`
     },(err, res)=>{
       if (err) throw err;
+      expect(res.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('serve session page', function (done) {
+    request({
+      method: 'get',
+      url: `${baseUrl}/session/112`
+    },(err, res)=>{
+      if (err) throw err;
       // console.log(res);
       expect(res.statusCode).to.equal(200);
       done();

@@ -1,9 +1,27 @@
-<div layout="row" layout-align="center">
-  <div flex-xs="100" flex="80" class="md-whiteframe-2dp card" ng-controller="ManageClubCtrl">
+<div layout-xs="column" layout-gt-xs="row" layout-align="center" ng-controller="ManageClubCtrl">
+  <md-card flex-xs="100" flex="50">
+    <md-card-content>
       <h1>Welcome to Organisr</h1>
       <p>
         Before we can help organise your clubs we would like to know which ones you're the admin of.
       </p>
-      <md-button class="md-raised md-primary" ng-click="getClubs()">Add Groups</md-button>
-  </div>
+    </md-card-content>
+    <md-card-actions>
+      <md-button class="md-raised md-primary" ng-click="setClubs()">Add Groups</md-button>
+    </md-card-actions>
+  </md-card>
+  <md-card ng-repeat="group in groups">
+    <md-card-content>
+     <h2>{{group.name}}</h2>
+     <div laout="row">
+       <md-input-container flex class="md-block">
+         <label>Message</label>
+         <textarea ng-required="true" ng-model="post" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+       </md-input-container>
+     </div>
+    </md-card-content>
+    <md-card-actions>
+      <md-button class="md-raised md-primary">Share</md-button>
+    </md-card-actions>
+  </md-card>
 </div>

@@ -15,11 +15,8 @@ var MemberSchema = new Schema({
 MemberSchema.statics.assignNewMember = function (opts){
   var self = this;
   var data = _.cloneDeep(opts);
-  self.findOne({memberID:data.memberID,groupID:data.groupID},(findErr,admin)=>{
-    if(admin){
-      console.log("Found");
-      console.log(admin);
-    }else{
+  self.findOne({memberID:data.memberID,groupID:data.groupID},(findErr,member)=>{
+    if(!member){
       console.log("Created");
       self.model("Member").create(data);
     }
@@ -30,7 +27,6 @@ MemberSchema.statics.findGroups = function (id, callback) {
   getGroupIds(this,id,(err,groupIDs)=>{
     Group.find({_id:{$in:groupIDs}},(err,groups)=>{
       if(err) callback(err);
-      console.log(groups);
       callback(err,groups);
     });
   });

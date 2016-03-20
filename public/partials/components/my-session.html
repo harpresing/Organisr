@@ -1,5 +1,5 @@
-<div  layout="column" layout-align="center" ng-controller="MySessions as sessions">
-  <div  layout="column" ng-repeat="ev in events">
+<div ng-controller="MySessions as sessions">
+<div layout="column" layout-align="center" ng-show='sessionsAvailable' ng-repeat="ev in events">
     <md-card flex="50">
       <md-card-title>
         <md-card-title-text>
@@ -16,4 +16,16 @@
       </md-card-content>
     </md-card>
   </div>
+</div>
+<div layout-xs="row" layout-gt-xs="column" layout-align="center" ng-hide='sessionsAvailable'>
+    <md-card flex="50">
+      <md-card-title>
+        <md-card-title-text>
+          <h3 class="md-subline">Your soldiers are waiting for instructions Captain!</h3>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>Start creating sessions at Manage Sessions!</a></p>
+      </md-card-content>
+    </md-card>
 </div>

@@ -51,4 +51,12 @@ GroupSchema.statics.findGroup = function(groupID,callback){
     callback(err,group);
   });
 };
+
+GroupSchema.statics.getAssociatedTrainningSessions = function(ids,callback){
+  var self = this;
+  self.find({_id:{$in:ids}},(groupErr,groups)=>{
+    if(groupErr)callback(groupErr,null);
+    callback(groupErr,groups);
+  });
+};
 module.exports = mongoose.model('Group', GroupSchema);

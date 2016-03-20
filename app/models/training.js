@@ -104,10 +104,23 @@ TrainingSchema.methods.returnTrainingName = function(callback){
 
 TrainingSchema.statics.getAffiliatedSession = function(id,callback){
   Member.findGroups(id,(memErr,groups)=>{
-    const groupIDs = groups.map((group)=>{return group._id;});
+    const associatedGroups = groups.map((group)=>{return {
+        id:group._id,
+        groupName: group.name
+      };
+    });
+    const groupIDs = groups.map((group)=>{return group.id;});
     this.find({groupID:{$in:groupIDs}},(trainErr, sessions)=>{
       if(trainErr) callback(trainErr);
-      callback(trainErr,sessions);
+      var results = sessions.map((session) => {
+        var group = associatedGroups.reduce((group) => {return session.groupID == group.id;});
+        var result = {
+          session:session,
+          group:group
+        };
+        return result;
+      });
+      callback(trainErr,results);
     });
   });
 };

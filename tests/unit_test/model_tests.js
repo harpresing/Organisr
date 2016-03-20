@@ -118,7 +118,7 @@ describe('Group model', function () {
   it('get all the groups', function (done) {
     Group.find({},(err,groups)=>{
       if(err) return done(err);
-      expect(groups.length).to.be.equal(3);
+      expect(groups.length).to.be.equal(4);
       done();
     });
   });
@@ -206,6 +206,8 @@ describe('Training model', function () {
   it('get all affiliated Training sessions', function (done) {
     Training.getAffiliatedSession("mem1",(err,sessions)=>{
       expect(sessions.length).to.be.equal(2);
+      const session = sessions[0];
+      expect(session.group).not.be.equal(undefined);
       done();
     });
   });

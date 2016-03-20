@@ -22,6 +22,7 @@ class TrainingController {
         Training.getAffiliatedSession(req.user.facebook.id,function(err, sessions) {
           if (err)
             res.send(err);
+            console.log(sessions);
           res.json(sessions);
         });
       };

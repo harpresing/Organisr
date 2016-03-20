@@ -1,23 +1,25 @@
 <div ng-controller="MySessions as sessions">
-<div layout="column" layout-align="center" ng-show='sessionsAvailable' ng-repeat="ev in events">
-    <md-card flex="50">
-      <md-card-title>
-        <md-card-title-text>
-          <h6 class="">{{ev.group.groupName}}</h6>
-          <h2 class="md-headline">{{ev.session.title}}</h2>
-          <h3 class="md-subline">{{ ev.session.date }} at {{ ev.session.time }}</h3>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-content>
-        <p>Location: {{ ev.session.venue }}, {{ ev.session.city }} </p>
+  <div layout="column" layout-align="center" ng-show='sessionsAvailable' ng-repeat="ev in events">
+    <h2 layout="row" layout-align="center" class="md-display-1">{{ev.group.name}}</h2>
+    <div layout-xs="row" layout-gt-xs="column" layout="row" layout-align="center" ng-repeat="session in ev.sessions">
+      <md-card flex="50" flex-xs="100">
+        <md-card-title>
+          <md-card-title-text>
+            <h2 class="md-headline">{{session.title}}</h2>
+            <h3 class="md-subline">{{ session.date }} at {{ session.time }}</h3>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>Location: {{ session.venue }}, {{ session.city }} </p>
 
-        <p ng-show="session.groupSize">Group Size: {{ ev.session.groupSize }}</p>
-        <!-- <p>Posted On {{ session.createdAt }}</p> -->
-      </md-card-content>
-    </md-card>
+          <p ng-show="session.groupSize">Group Size: {{ session.groupSize }}</p>
+          <!-- <p>Posted On {{ session.createdAt }}</p> -->
+        </md-card-content>
+      </md-card>
+    </div>
   </div>
 </div>
-<div layout-xs="row" layout-gt-xs="column" layout-align="center" ng-hide='sessionsAvailable'>
+<div layout="column" layout-align="center" ng-hide='!sessionsAvailable'>
     <md-card flex="50">
       <md-card-title>
         <md-card-title-text>

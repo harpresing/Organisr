@@ -2,7 +2,6 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Group = require("./group");
 const _ = require("lodash");
 
 var MemberSchema = new Schema({
@@ -25,7 +24,7 @@ MemberSchema.statics.assignNewMember = function (opts){
 
 MemberSchema.statics.findGroups = function (id, callback) {
   getGroupIds(this,id,(err,groupIDs)=>{
-    Group.find({_id:{$in:groupIDs}},(err,groups)=>{
+    mongoose.model('Group').find({_id:{$in:groupIDs}},(err,groups)=>{
       if(err) callback(err);
       callback(err,groups);
     });

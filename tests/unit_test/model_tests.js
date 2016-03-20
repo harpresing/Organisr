@@ -118,6 +118,8 @@ describe('Group model', function () {
       const group = groups[0];
       expect(group.sessions).not.to.be.equal(undefined);
       expect(group.sessions.length).to.be.equal(1);
+      const session = group.sessions[0];
+      expect(session.title).to.equal("Test");
       done();
     });
   });

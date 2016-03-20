@@ -1,5 +1,6 @@
 module.exports = { name:"MySessions",
 controller:[ '$http', '$scope' ,function($http, $scope){
+  $scope.sessionsAvailable = false;
         	$http({
                  method  : 'GET',
                  url     : '/get-training-sessions'
@@ -10,6 +11,7 @@ controller:[ '$http', '$scope' ,function($http, $scope){
                     console.log("Sessions are not available");
                 } else{
                     console.log("Sessions are available");
+                    console.log(response.data);
                     $scope.sessionsAvailable = true;
                     $scope.events = response.data;
                 }

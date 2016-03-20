@@ -27,9 +27,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.1/bootstrap-material-design.min.css" media="screen" title="no title" charset="utf-8">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/index-styles.css">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" charset="utf-8">
@@ -91,14 +91,14 @@
                         <h3>Training sessions made easy</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li>
+                            <%# <li>
                                 <a href="./login" class="btn btn-default btn-lg"><span class="network-name">Login</span></a>
                             </li>
                             <li>
                                 <a href="./login" class="btn btn-default btn-lg"><!--<i class="fa fa-github fa-fw"></i>--> <span class="network-name">Register</span></a>
-                            </li>
+                            </li>%>
                             <li>
-                                <a href="/auth/facebook" class="btn btn-default btn-lg"><!--<i class="fa fa-linkedin fa-fw"></i>--> <span class="network-name">Connect with Facebook</span></a>
+                                <a href="/auth/facebook" class="btn btn-info btn-raised btn-lg"><!--<i class="fa fa-linkedin fa-fw"></i>--> <span class="network-name">Login with Facebook</span></a>
                             </li>
                         </ul>
                     </div>
@@ -245,10 +245,13 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.1/bootstrap-material-design.iife.min.js" charset="utf-8"></script>
+
 
 </body>
 

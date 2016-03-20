@@ -1,6 +1,9 @@
 'use strict';
 
 const Training  = require("./../models/training");
+const Group = require("./../models/group");
+const Member = require('./../models/member');
+
 class TrainingController {
   createSession(){
     return (req,res)=>{
@@ -18,13 +21,22 @@ class TrainingController {
   }
   getSessions(){
       return (req, res)=> {
-        console.log(req.user.facebook);
-        Training.getAffiliatedSession(req.user.facebook.id,function(err, sessions) {
-          if (err)
+        Member.findGroups(req.user.facebook.id,(memErr,groups)=>{
+          const groupIds = groups.map((g) => {return g._id;});
+          console.log(groupIds);
+          Group.getAssociatedTrainningSessions(groupIds,(err,sessions)=>{
+            if (err)
             res.send(err);
             console.log(sessions);
-          res.json(sessions);
+            res.json(sessions);
+          });
         });
+        // Training.getAffiliatedSession(req.user.facebook.id,function(err, sessions) {
+        //   if (err)
+        //     res.send(err);
+        //     console.log(sessions);
+        //   res.json(sessions);
+        // });
       };
   }
 

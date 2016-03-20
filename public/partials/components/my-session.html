@@ -8,14 +8,13 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>Location: {{ session.venue }}, {{ session.city }} </p>
+        <p>Location: {{ session.venue }}, {{ session.city }}</p>
         <p>Group Size: {{ session.groupSize }}</p>
         <p>Posted On {{ session.createdAt }}</p>
       </md-card-content>
     </md-card>
-  </div>
 </div>
-<div layout-xs="row" layout-gt-xs="column" layout-align="center" ng-hide='sessionsAvailable'>
+<div layout-xs="row" layout-gt-xs="column" layout-align="center" ng-show='!sessionsAvailable'>
     <md-card flex="50">
       <md-card-title>
         <md-card-title-text>
@@ -23,7 +22,8 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>Start creating sessions at Manage Sessions!</a></p>
+        <p>Start creating sessions at Manage Sessions! </a></p>
       </md-card-content>
     </md-card>
+</div>
 </div>

@@ -1,6 +1,7 @@
+var angular = require('angular');
 module.exports = { name:"MySessions",
 controller:[ '$http', '$scope' ,function($http, $scope){
-        	$http({
+            $http({
                  method  : 'GET',
                  url     : '/get-training-sessions'
             }).then(function (response){

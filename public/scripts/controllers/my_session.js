@@ -13,6 +13,7 @@ controller:[ '$http', '$scope' ,function($http, $scope){
                 } else{
                     console.log("Sessions are available");
                     $scope.sessionsAvailable = true;
+                    console.log($scope.sessionsAvailable);
                 }
             }, function errorCallback(response){
                 console.log(response.status);

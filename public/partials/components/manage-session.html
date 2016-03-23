@@ -11,7 +11,7 @@
           <md-input-container class="md-block">
             <label>Group</label>
             <md-select ng-model="train.groupID">
-              <md-option ng-repeat="group in manage.groups" value="{{group._id}}" ng-click="manage.getInstructors(group._id)">
+              <md-option ng-repeat="group in manage.groups" value="{{group._id}}" md-on-open="manage.getGroups()" ng-click="manage.getInstructors(group._id)">
                 {{group.name}}
               </md-option>
             </md-select>

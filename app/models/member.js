@@ -2,7 +2,6 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Group = require("./group");
 const _ = require("lodash");
 
 var MemberSchema = new Schema({
@@ -15,11 +14,8 @@ var MemberSchema = new Schema({
 MemberSchema.statics.assignNewMember = function (opts){
   var self = this;
   var data = _.cloneDeep(opts);
-  self.findOne({memberID:data.memberID,groupID:data.groupID},(findErr,admin)=>{
-    if(admin){
-      console.log("Found");
-      console.log(admin);
-    }else{
+  self.findOne({memberID:data.memberID,groupID:data.groupID},(findErr,member)=>{
+    if(!member){
       console.log("Created");
       self.model("Member").create(data);
     }
@@ -28,9 +24,8 @@ MemberSchema.statics.assignNewMember = function (opts){
 
 MemberSchema.statics.findGroups = function (id, callback) {
   getGroupIds(this,id,(err,groupIDs)=>{
-    Group.find({_id:{$in:groupIDs}},(err,groups)=>{
+    mongoose.model('Group').find({_id:{$in:groupIDs}},(err,groups)=>{
       if(err) callback(err);
-      console.log(groups);
       callback(err,groups);
     });
   });
@@ -39,8 +34,6 @@ MemberSchema.statics.findGroups = function (id, callback) {
 function getGroupIds(self,id, cb) {
   self.find({memberID:id},(findErr,members)=>{
     const groupIDs = members.map((member)=>{return member.groupID;});
-    console.log("Hello");
-    console.log(members);
     cb(findErr,groupIDs);
     });
 }

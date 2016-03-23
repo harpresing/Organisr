@@ -17,12 +17,17 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    // font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
-
+.btn-default{
+  background: #fff;
+  &:hover{
+    background: darken(#fff, 10%);
+  }
+}
 .topnav {
-    font-size: 14px; 
+    font-size: 14px;
 }
 
 .lead {

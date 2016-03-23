@@ -8,6 +8,7 @@ const del = require("del");
 const htmlmin = require("gulp-htmlmin");
 const fs = require('fs');
 const path = require('path');
+const uglify = require("gulp-uglify");
 
 //This will cause the browser to reload automatically
 gulp.task("browser-sync",()=>{
@@ -70,6 +71,7 @@ gulp.task("html",()=>{
 gulp.task("vendor_scripts",()=>{
   return gulp.src('./public/vendor_scripts/**/*.js')
   .pipe(concat("vendor.js"))
+  .pipe(uglify())
   .pipe(gulp.dest('./dist/scripts'));
 
 });

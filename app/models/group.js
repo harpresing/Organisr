@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const _ = require("lodash");
-
+const objectAssign = require("object-assign");
 var GroupSchema = new Schema({
   _id:{
     type: String,
@@ -30,7 +30,6 @@ GroupSchema.statics.register = function (opts,callback){
     if (findErr) {
       callback(findErr);
     } else if(group){
-      console.log("Found");
       callback(findErr,group);
     }else{
       self.model("Group").create(data,(createErr,newGroup)=>{
@@ -50,6 +49,24 @@ GroupSchema.statics.findGroup = function(groupID,callback){
       return callback(err,null);
     }
     callback(err,group);
+  });
+};
+
+GroupSchema.statics.getAssociatedTrainningSessions = function(ids,callback){
+  var self = this;
+  self.find({_id:{$in:ids}},(groupErr,groups)=>{
+    if(groupErr)callback(groupErr,null);
+    const groupIds = groups.map((g) => {return g._id;});
+    mongoose.model('Training').find({groupID:{$in:groupIds}},(err,sessions)=>{
+      const results = groups.map((group) => {
+         const groupSessions = sessions.filter((session) => {return session.groupID == group._id;});
+         return {
+           group: group,
+           sessions:groupSessions
+         };
+      });
+      callback(groupErr,results);
+    });
   });
 };
 module.exports = mongoose.model('Group', GroupSchema);

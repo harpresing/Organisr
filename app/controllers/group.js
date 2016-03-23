@@ -10,7 +10,6 @@ function setGroup(){
     FB.setAccessToken(req.user.facebook.token);
 
     FB.api("me/groups",{},(fbRes)=>{
-      console.log(fbRes);
       fbRes.data.map((newGroup)=>{
         //Loop through groups that the user is an admin of
 
@@ -65,8 +64,7 @@ function postToFb() {
     FB.api(`${req.body.groupID}/feed`,'post',{
       message: req.body.message,
       link: `http://organisr.xyz/${req.body._id}`
-    },(fbRes)=>{
-      console.log(fbRes);
+    },()=>{
       res.send("Posted");
     });
   };

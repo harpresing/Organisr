@@ -92,21 +92,9 @@ const testTrainninData = [{
   }
 ];
 describe('Group model', function () {
-  beforeEach((done)=>{
-    testGroupData.map((group)=>{
-      Group.create(group,()=>{
-      });
-    });
-    done();
-  });
+  beforeEach(populateTestDB);
 
-  afterEach((done)=>{
-    testGroupData.map((group)=>{
-      Group.remove(group,()=>{
-      });
-    });
-    done();
-  });
+  afterEach(clearTestDB);
 
   it('get group 1', function (done) {
     Group.findOne({_id:"groupId1"},(err,group)=>{
@@ -118,34 +106,29 @@ describe('Group model', function () {
   it('get all the groups', function (done) {
     Group.find({},(err,groups)=>{
       if(err) return done(err);
-      expect(groups.length).to.be.equal(3);
+      expect(groups.length).to.be.equal(4);
+      done();
+    });
+  });
+
+  it('get the group and it\'s associated trainning sessions', function (done) {
+    Group.getAssociatedTrainningSessions(["groupId1","groupId2"],(err,groups)=>{
+      if(err) return done(err);
+      expect(groups.length).to.be.equal(2);
+      const group = groups[0];
+      expect(group.sessions).not.to.be.equal(undefined);
+      expect(group.sessions.length).to.be.equal(1);
+      const session = group.sessions[0];
+      expect(session.title).to.equal("Test");
       done();
     });
   });
 });
 
 describe('Member model', function () {
-  beforeEach(function (done) {
-    testGroupData.map((group)=>{
-      Group.create(group,()=>{
-      });
-    });
-    testMemberData.map((member)=>{
-      Member.create(member);
-    });
-    done();
-  });
+  beforeEach(populateTestDB);
 
-  afterEach(function (done) {
-    testGroupData.map((group)=>{
-      Group.remove(group,()=>{
-      });
-    });
-    testMemberData.map((member)=>{
-      Member.remove(member,()=>{});
-    });
-    done();
-  });
+  afterEach(clearTestDB);
 
   it('find a member', function (done) {
     Member.find({memberID:"mem1"},(err,member)=>{
@@ -167,33 +150,9 @@ describe('Member model', function () {
 });
 
 describe('Training model', function () {
-  beforeEach(function (done) {
-    testGroupData.map((group)=>{
-      Group.create(group,()=>{
-      });
-    });
-    testMemberData.map((member)=>{
-      Member.create(member);
-    });
-    testTrainninData.map((training)=>{
-      Training.create(training);
-    });
-    done();
-  });
+  beforeEach(populateTestDB);
 
-  afterEach(function (done) {
-    testGroupData.map((group)=>{
-      Group.remove(group,()=>{
-      });
-    });
-    testMemberData.map((member)=>{
-      Member.remove(member,()=>{});
-    });
-    testTrainninData.map((training)=>{
-      Training.remove(training,()=>{});
-    });
-    done();
-  });
+  afterEach(clearTestDB);
 
   it('find a training session', function (done) {
     Training.find({},(err,trainings)=>{
@@ -206,7 +165,41 @@ describe('Training model', function () {
   it('get all affiliated Training sessions', function (done) {
     Training.getAffiliatedSession("mem1",(err,sessions)=>{
       expect(sessions.length).to.be.equal(2);
+      const session = sessions[0];
+      expect(session.group).not.be.equal(undefined);
       done();
     });
   });
 });
+
+describe('Participant model', function () {
+
+});
+
+function populateTestDB(done) {
+  testGroupData.map((group)=>{
+    Group.create(group,()=>{
+    });
+  });
+  testMemberData.map((member)=>{
+    Member.create(member);
+  });
+  testTrainninData.map((training)=>{
+    Training.create(training);
+  });
+  done();
+}
+
+function clearTestDB(done) {
+  testGroupData.map((group)=>{
+    Group.remove(group,()=>{
+    });
+  });
+  testMemberData.map((member)=>{
+    Member.remove(member,()=>{});
+  });
+  testTrainninData.map((training)=>{
+    Training.remove(training,()=>{});
+  });
+  done();
+}

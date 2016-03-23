@@ -11,12 +11,12 @@ router.get('/',(req,res)=>{
   res.render('index',{title:"Organisr",currentUser:req.user});
 });
 
-router.get("/login",(req,res)=>{
+/*router.get("/login",(req,res)=>{
   res.render('login');
 
 });
-
-router.post('/login', authCtrl.signin);
+*/
+//router.post('/login', authCtrl.signin);
 router.post('/signup',accountCtrl.signup);
 router.get('/logout', authCtrl.signout);
 

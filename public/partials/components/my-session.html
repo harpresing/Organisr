@@ -1,7 +1,7 @@
 <div ng-controller="MySessions as sessions">
-  <div layout="column" layout-align="center" ng-show='sessionsAvailable' ng-repeat="ev in events">
+  <div ng-show='sessionsAvailable' ng-repeat="ev in events">
     <h2 layout="row" layout-align="center" class="md-display-1">{{ev.group.name}}</h2>
-    <div layout-xs="row" layout-gt-xs="column" layout="row" layout-align="center" ng-repeat="session in ev.sessions">
+    <div layout="row" layout-xs="column" layout-align="center" ng-repeat="session in ev.sessions">
       <md-card flex="50" flex-xs="100">
         <md-card-title>
           <md-card-title-text>
@@ -27,7 +27,7 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>Start creating sessions at Manage Sessions!</a></p>
+        <p>Start creating sessions at Manage Sessions! </a></p>
       </md-card-content>
     </md-card>
 </div>

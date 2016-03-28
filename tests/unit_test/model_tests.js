@@ -7,6 +7,7 @@ const expect = chai.expect;
 const Group = require("./../../app/models/group");
 const Member = require("./../../app/models/member");
 const Training = require("./../../app/models/training");
+const Participant = require("./../../app/models/participant");
 const mongoose = require("mongoose");
 const config = require("./../../config/index");
 mongoose.connect(config.mongodb.uri);
@@ -57,7 +58,7 @@ const testMemberData = [
   }
 ];
 
-const testTrainninData = [{
+const testTrainingData = [{
     "groupID" : "groupId1",
   	"title" : "Test",
   	"date" : "Thursday, March 31st, 2016",
@@ -91,6 +92,14 @@ const testTrainninData = [{
   	]
   }
 ];
+
+const participantData = [
+  {
+    sessionId: 'session1',
+    userId:'user1'
+  }
+];
+
 describe('Group model', function () {
   beforeEach(populateTestDB);
 
@@ -173,7 +182,39 @@ describe('Training model', function () {
 });
 
 describe('Participant model', function () {
+  beforeEach(populateTestDB);
 
+  afterEach(clearTestDB);
+
+  it('join session', function (done) {
+    Participant.joinSession(participantData[0],(err,participant)=>{
+      expect(err).to.be.null;
+      var userId = participant.userId;
+      expect(userId).to.be.equal('user1');
+      done();
+    });
+  });
+
+  it("can't join a session twice", function (done) {
+    Participant.joinSession(participantData[0],()=>{
+      Participant.joinSession(participantData[0],(err)=>{
+        expect(err).not.to.be.null;
+        expect(err.message).to.be.equal("Already Joined");
+        done();
+      });
+    });
+  });
+
+  it('can leave a session', function (done) {
+    Participant.joinSession(participantData[0],()=>{
+      Participant.remove(participantData[0],()=>{
+        Participant.find({},(err,participants)=>{
+          expect(participants.length).to.be.equal(0);
+          done();
+        });
+      });
+    });
+  });
 });
 
 function populateTestDB(done) {
@@ -184,7 +225,7 @@ function populateTestDB(done) {
   testMemberData.map((member)=>{
     Member.create(member);
   });
-  testTrainninData.map((training)=>{
+  testTrainingData.map((training)=>{
     Training.create(training);
   });
   done();
@@ -198,8 +239,10 @@ function clearTestDB(done) {
   testMemberData.map((member)=>{
     Member.remove(member,()=>{});
   });
-  testTrainninData.map((training)=>{
+  testTrainingData.map((training)=>{
     Training.remove(training,()=>{});
   });
+
+  Participant.remove({},()=>{});
   done();
 }

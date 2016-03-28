@@ -1,4 +1,4 @@
-<div ng-controller="MySessions as sessions">
+<div ng-controller="MySessions as sessionCtrl">
   <div ng-show='sessionsAvailable' ng-repeat="ev in events">
     <h2 layout="row" layout-align="center" class="md-display-1">{{ev.group.name}}</h2>
     <div layout="row" layout-xs="column" layout-align="center" ng-repeat="session in ev.sessions">
@@ -14,7 +14,12 @@
 
           <p ng-show="session.groupSize">Group Size: {{ session.groupSize }}</p>
           <!-- <p>Posted On {{ session.createdAt }}</p> -->
+          {{session.participants}}
         </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="sessionCtrl.joinSession(session._id)" ng-if="!session.isAttending">Join</md-button>
+          <md-button ng-click="sessionCtrl.leaveSession(session._id)" ng-if="session.isAttending">Leave</md-button>
+        </md-card-actions>
       </md-card>
     </div>
   </div>

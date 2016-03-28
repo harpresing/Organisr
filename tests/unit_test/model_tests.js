@@ -96,7 +96,9 @@ const testTrainingData = [{
 const participantData = [
   {
     sessionId: 'session1',
-    userId:'user1'
+    userId:'user1',
+    name:'user1',
+    picture:'https://scontent.xx.fbcdn.net/hprofile-xpl1/v/t1.0-1/p200x200/1935086_1043615548994624_6873699612245368071_n.jpg?oh=4ab1c32450c7eebba84994ef3e0fc889&oe=579937B3'
   }
 ];
 

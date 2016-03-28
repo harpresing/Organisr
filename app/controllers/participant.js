@@ -7,9 +7,12 @@ class ParticipantController {
     return (req,res)=>{
       const data = {
         userId: req.user.facebook.id,
+        name: req.user.facebook.name,
+        picture: req.user.facebook.picture,
         sessionId: req.body.sessionId
       };
       Participant.joinSession(data,(err,participant)=>{
+        console.log(err);
         if(err){
           res.send(err);
         }

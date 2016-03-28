@@ -14,6 +14,14 @@ var ParticipantSchema = new Schema({
     type : String,
     required : "Training Id is missing"
   },
+  name : {
+    type : String,
+    required : "name is missing"
+  },
+  picture : {
+    type : String,
+    required : "image url is missing"
+  },
   joinedOn : {
     type : Date,
     default: Date.now

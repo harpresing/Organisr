@@ -23,11 +23,10 @@ class TrainingController {
       return (req, res)=> {
         Member.findGroups(req.user.facebook.id,(memErr,groups)=>{
           const groupIds = groups.map((g) => {return g._id;});
-          console.log(groupIds);
           Group.getAssociatedTrainningSessions(groupIds,(err,sessions)=>{
-            if (err)
-            res.send(err);
-            console.log(sessions);
+            if (err){
+              res.send(err);
+            }
             res.json(sessions);
           });
         });

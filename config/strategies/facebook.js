@@ -13,10 +13,11 @@ module.exports = ()=>{
     clientID: config.auth.facebookAuth.clientID,
     clientSecret: config.auth.facebookAuth.clientSecret,
     callbackURL: config.auth.facebookAuth.callbackURL,
-    profileFields: ['id', 'displayName', 'photos', 'email']
+    profileFields: ['id', 'displayName', 'picture.type(large)', 'email']
   },
    // facebook will send back the token and profile
    (token,refreshToken,profile,done)=>{
+     console.log(profile);
      // asynchronous
      process.nextTick(()=>{
        User.findOne({'facebook.id':profile.id},(err,user)=>{
@@ -36,6 +37,7 @@ module.exports = ()=>{
            newUser.facebook.token = token;
            newUser.facebook.name = profile.displayName;
            newUser.facebook.email = profile.emails[0].value;
+           newUser.facebook.picture = profile.photos[0].value;
 
            console.log(`New User : ${newUser}`);
 

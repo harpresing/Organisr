@@ -10,8 +10,7 @@ require('./controllers/index');
 require('./controllers/ui/navbar_layout');
 require('./components/index');
 
-const app = angular.module('organisrApp',['ngComponentRouter','ngMaterial','mdPickers',
-'OrganisrController','OrganisrComponents']);
+const app = angular.module('organisrApp',['ngComponentRouter','ngMaterial','mdPickers','OrganisrComponents','OrganisrController']);
 
 app.config(["$mdThemingProvider",
   ($mdThemingProvider)=>{

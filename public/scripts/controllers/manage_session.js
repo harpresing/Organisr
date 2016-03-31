@@ -1,6 +1,6 @@
 var angular = require('angular');
 module.exports = { name:"ManageSession",
-controller:['$http','$mdDialog','$mdToast', function($http,$mdDialog,$mdToast){
+controller:['$http','$mdDialog','$mdToast', function($http, $mdDialog, $mdToast){
 	this.isDisabled = true;
 	$http({
       method: 'GET',
@@ -38,34 +38,34 @@ controller:['$http','$mdDialog','$mdToast', function($http,$mdDialog,$mdToast){
 			}
 		});
 	};
+	function DialogController($scope) {
+		$scope.hide = function() {
+	    $mdDialog.hide();
+	  };
+	  $scope.cancel = function() {
+	    $mdDialog.cancel();
+	  };
+		$scope.postToFb = ()=>{
+			$mdDialog.hide($scope.message);
+		};
+	}
+
+	function showAlert(ev,newSession) {
+
+		$mdDialog.show({
+			controller: ['$scope',DialogController],
+			templateUrl: "./partials/components/post-dialog.html",
+			parent: angular.element(document.body),
+			targetEvent:ev,
+			clickOutsideToClose:true
+		}).then((message)=>{
+			const data = Object.assign(newSession,{message:message});
+			$http.post("fb/post-to-group",data).success(()=>{
+				console.log("Posted");
+			});
+		});
+	}
+
 }
 ]
 };
-
-function DialogController($scope,$mdDialog) {
-	$scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-	$scope.postToFb = ()=>{
-		$mdDialog.hide($scope.message);
-	};
-}
-
-function showAlert(ev,$mdDialog,$http,newSession) {
-
-	$mdDialog.show({
-		controller: DialogController,
-		templateUrl: "./partials/components/post-dialog.html",
-		parent: angular.element(document.body),
-		targetEvent:ev,
-		clickOutsideToClose:true
-	}).then((message)=>{
-		const data = Object.assign(newSession,{message:message});
-		$http.post("fb/post-to-group",data).success(()=>{
-			console.log("Posted");
-		});
-	});
-}

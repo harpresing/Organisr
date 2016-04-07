@@ -60,10 +60,11 @@ function getMembers() {
 
 function postToFb() {
   return (req,res)=>{
+    console.log("Hello");
     console.log(req.body.groupID);
     console.log(req.user.facebook.token);
     FB.setAccessToken(req.user.facebook.token);
-    FB.api(`1727794110798446/feed`,'post',{
+    FB.api(`${req.body.groupID}/feed`,'post',{
       message: req.body.message,
       link: `http://organisr.xyz/${req.body._id}`
     },()=>{

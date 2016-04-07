@@ -34,7 +34,7 @@ controller:['$http','$mdDialog','$mdToast', function($http, $mdDialog, $mdToast)
 			}else{
 				this.isDisabled = true;
 				this.newSession = response;
-				showAlert(ev,$mdDialog,$http,this.newSession);
+				showAlert(ev,train);
 			}
 		});
 	};
@@ -50,8 +50,8 @@ controller:['$http','$mdDialog','$mdToast', function($http, $mdDialog, $mdToast)
 		};
 	}
 
-	function showAlert(ev,newSession) {
-
+	function showAlert(ev,train) {
+		console.log(train);
 		$mdDialog.show({
 			controller: ['$scope',DialogController],
 			templateUrl: "./partials/components/post-dialog.html",
@@ -59,7 +59,7 @@ controller:['$http','$mdDialog','$mdToast', function($http, $mdDialog, $mdToast)
 			targetEvent:ev,
 			clickOutsideToClose:true
 		}).then((message)=>{
-			const data = Object.assign(newSession,{message:message});
+			const data = Object.assign(train,{message:message});
 			$http.post("fb/post-to-group",data).success(()=>{
 				console.log("Posted");
 			});

@@ -64,6 +64,7 @@ controller:[ '$http', '$scope', '$mdToast',function($http, $scope,$mdToast){
          return Object.assign(session,{participants:participants},{isAttending:isAttending});
         });
       });
+      ev.sessions.reverse();
     });
   }
 }]};

@@ -8,6 +8,7 @@ class TrainingController {
   createSession(){
     return (req,res)=>{
       Training.create(req.body,(err,training)=>{
+        console.log(training);
         if(err){
           res.send({
             error:true,
